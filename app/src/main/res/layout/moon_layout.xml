@@ -163,7 +163,7 @@
                 android:padding="18dip" android:gravity="center"/>
         </TableRow>
 
-        <!-- Phase -->
+        <!-- Lunation -->
         <TableRow
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
