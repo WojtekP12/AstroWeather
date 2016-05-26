@@ -18,11 +18,11 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="24dp"
-                android:text="Moon"
+                android:textSize="48dp"
+                android:text="Sun"
                 android:layout_span="3"
                 android:padding="18dip"
-                android:textColor="#000459"
+                android:textColor="#c9b805"
                 android:textAlignment="center"
                 android:textStyle="bold" />
         </TableRow>
@@ -30,12 +30,12 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:gravity="center_horizontal">
-            <ImageView android:layout_height="50dp"
+            <ImageView android:layout_height="100dp"
                 android:layout_width="match_parent"
-                android:src="@mipmap/moon"/>
+                android:src="@mipmap/sun"/>
 
         </TableRow>
-        <!-- MoonRise & MoonSet -->
+        <!-- SunRise -->
         <TableRow
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
@@ -43,8 +43,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="Moonrise / Moonset"
+                android:textSize="30dp"
+                android:text="Sunrise"
                 android:layout_span="3"
                 android:padding="18dip"
                 android:textColor="#000000"
@@ -57,16 +57,19 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Moonrise :"
+                android:text="Time :"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp" />
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp"
+                android:textAlignment="textStart" />
         </TableRow>
         <TableRow
             android:layout_height="wrap_content"
@@ -74,19 +77,22 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Moonset :"
+                android:text="Azimuth :"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp" />
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp"
+                android:textAlignment="textStart" />
         </TableRow>
 
-        <!-- NewMoon & FullMoon -->
+        <!-- SunSet -->
         <TableRow
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
@@ -94,8 +100,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="Newmoon / Fullmoon"
+                android:textSize="30dp"
+                android:text="Sunset"
                 android:layout_span="3"
                 android:padding="18dip"
                 android:textColor="#000000"
@@ -108,16 +114,19 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Newmoon :"
+                android:text="Time :"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp" />
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textAlignment="textStart"
+                android:textSize="24dp" />
         </TableRow>
         <TableRow
             android:layout_height="wrap_content"
@@ -125,19 +134,22 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Fullmoon :"
+                android:text="Azimuth :"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp" />
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp"
+                android:textAlignment="textStart" />
         </TableRow>
 
-        <!-- Phase -->
+        <!-- Dawn / Twilight -->
         <TableRow
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
@@ -145,8 +157,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="Phase"
+                android:textSize="30dp"
+                android:text="Dawn / Twilight"
                 android:layout_span="3"
                 android:padding="18dip"
                 android:textColor="#000000"
@@ -159,33 +171,19 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Value :"
+                android:text="Dawn :"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp" />
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
-        </TableRow>
-
-        <!-- Lunation -->
-        <TableRow
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:gravity="center_horizontal">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="18dp"
-                android:text="Lunation"
-                android:layout_span="3"
-                android:padding="18dip"
-                android:textColor="#000000"
-                android:textAlignment="textStart"
-                android:textStyle="bold" />
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp"
+                android:textAlignment="textStart" />
         </TableRow>
         <TableRow
             android:layout_height="wrap_content"
@@ -193,17 +191,22 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Day :"
+                android:text="Twilight :"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp" />
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
                 android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"/>
+                android:padding="18dip" android:gravity="center"
+                android:textSize="24dp"
+                android:textAlignment="viewStart" />
         </TableRow>
+
+
     </TableLayout>
 
 </ScrollView>

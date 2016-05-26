@@ -1,5 +1,6 @@
 package com.example.wojciechpelka.astroweather;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +15,8 @@ public class SunFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        ViewGroup rootView = (ViewGroup)inflater.inflate(R.layout.sun_layout,container,false);
+        ViewGroup rootView;
+        rootView = (ViewGroup)inflater.inflate(R.layout.sun_layout,container,false);
 
         return rootView;
     }

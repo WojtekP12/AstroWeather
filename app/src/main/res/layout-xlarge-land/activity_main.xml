@@ -2,44 +2,57 @@
 <TableLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#ffffff">
     <TableRow>
-        <TextView android:layout_width="0dp" android:layout_weight="1"
-            android:text="Time : 12:00:00"
-            android:textSize="18dp"
-            android:textIsSelectable="false"
-            android:textColor="#000000" />
-        <TextView android:layout_width="0dp" android:layout_weight="1"
-            android:text="Location : 53,1  54,2"
-            android:textSize="18dp"
-            android:textColor="#000000" />
-    </TableRow>
-    <TableRow>
-        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
+        <TextView
             android:layout_height="match_parent"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context="com.example.wojciechpelka.astroweather.MainActivity">
+            android:layout_width="0dp"
+            android:layout_weight="0.8"
+            android:text="Time :"
+            android:textColor="#000000"
+            android:textSize="40dp" />
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="12:00:00"
+            android:textColor="#000000"
+            android:textSize="40dp" />
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="Location :"
+            android:textColor="#000000"
+            android:textSize="40dp" />
+        <TextView
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="53,1  54,2"
+            android:textColor="#000000"
+            android:textSize="40dp" />
 
-            <fragment android:name="com.example.wojciechpelka.astroweather.MoonFragment"
-                android:id="@+id/list"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                tools:layout="@layout/moon_layout" />
+    </TableRow>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/black"/>
+    <TableRow android:orientation="horizontal">
+        <fragment android:name="com.example.wojciechpelka.astroweather.MoonFragment"
+            android:id="@+id/list"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            tools:layout="@layout/moon_layout" />
 
-            <fragment android:name="com.example.wojciechpelka.astroweather.SunFragment"
-                android:id="@+id/viewer"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                tools:layout="@layout/sun_layout" />
-
-        </LinearLayout>
+        <fragment android:name="com.example.wojciechpelka.astroweather.SunFragment"
+            android:id="@+id/viewer"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            tools:layout="@layout/sun_layout" />
     </TableRow>
 </TableLayout>
