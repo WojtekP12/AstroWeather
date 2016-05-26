@@ -71,7 +71,8 @@
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"
                 android:textSize="24sp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:id="@+id/moonriseValue" />
         </TableRow>
         <TableRow
             android:layout_height="wrap_content"
@@ -91,7 +92,8 @@
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:id="@+id/moonsetValue" />
         </TableRow>
 
         <!-- NewMoon & FullMoon -->
@@ -128,7 +130,8 @@
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:id="@+id/newmoonValue" />
         </TableRow>
         <TableRow
             android:layout_height="wrap_content"
@@ -148,7 +151,8 @@
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"
                 android:textSize="24sp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:id="@+id/fullmoonValue" />
         </TableRow>
 
         <!-- Phase -->
@@ -185,7 +189,8 @@
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:id="@+id/moonPhaseValue" />
         </TableRow>
 
         <!-- Lunation -->
@@ -222,7 +227,8 @@
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart" />
+                android:textAlignment="textStart"
+                android:id="@+id/lunationValue" />
         </TableRow>
     </TableLayout>
 
