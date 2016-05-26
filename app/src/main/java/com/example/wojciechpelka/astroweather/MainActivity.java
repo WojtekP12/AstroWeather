@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 
+import com.astrocalculator.AstroCalculator;
+
 public class MainActivity extends ActionBarActivity
 {
     private ViewPager pager;
@@ -27,6 +29,8 @@ public class MainActivity extends ActionBarActivity
             pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
             pager .setAdapter(pagerAdapter);
         }
+
+        
     }
 
     @Override
