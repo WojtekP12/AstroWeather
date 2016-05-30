@@ -2,6 +2,7 @@ package com.example.wojciechpelka.astroweather;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
 
+import java.util.Calendar;
+
 /**
  * Created by wojciech.pelka on 2016-05-23.
  */
@@ -19,15 +22,28 @@ public class MoonFragment extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        ViewGroup rootView;
+        final ViewGroup rootView;
         rootView = (ViewGroup)inflater.inflate(R.layout.moon_layout,container,false);
-        setMoonInfo(rootView);
+
+        final Handler moonHandler = new Handler();
+
+        moonHandler.postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                setMoonInfo(rootView);
+                moonHandler.postDelayed(this,5000);
+            }
+        },5000);
+
 
         return rootView;
     }
 
     public void setMoonInfo(ViewGroup rootView)
     {
+        Moon.setMoon();
         AstroCalculator.MoonInfo moon = Moon.getMoon();
         AstroDateTime moonRise = moon.getMoonrise();
         AstroDateTime moonSet = moon.getMoonset();
@@ -49,9 +65,9 @@ public class MoonFragment extends Fragment
         fullMoonValue.setText(fullMoon.getDay() + " - " + fullMoon.getMonth() + " - " +fullMoon.getYear());
 
         TextView phaseValue = (TextView)rootView.findViewById(R.id.moonPhaseValue);
-        phaseValue.setText(String.valueOf(Math.round(phase*10.0)/10.0));
+        phaseValue.setText(String.valueOf(phase));
 
         TextView lunationValue = (TextView)rootView.findViewById(R.id.lunationValue);
-        lunationValue.setText(String.valueOf(Math.round(lunation*10.0)/10.0));
+        lunationValue.setText(String.valueOf(lunation));
     }
 }

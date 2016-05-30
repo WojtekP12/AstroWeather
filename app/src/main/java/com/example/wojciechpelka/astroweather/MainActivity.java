@@ -25,8 +25,6 @@ public class MainActivity extends ActionBarActivity
     private PagerAdapter pagerAdapter;
 
     TextView Hours,Minutes,Seconds;
-    private Timer timer = new Timer();
-    private TimerTask timerTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,7 +56,9 @@ public class MainActivity extends ActionBarActivity
                                 int hours = c.get(Calendar.HOUR);
                                 int minutes = c.get(Calendar.MINUTE);
                                 int seconds = c.get(Calendar.SECOND);
-
+                                CurrentTime.hour = hours;
+                                CurrentTime.minute = minutes;
+                                CurrentTime.second = seconds;
                                 Hours.setText(hours+"");
                                 Minutes.setText(minutes+"");
                                 Seconds.setText(seconds+"");
@@ -72,24 +72,11 @@ public class MainActivity extends ActionBarActivity
 
         t.start();
 
-        int hours = Integer.parseInt(Hours.getText().toString());
-        int minutes = Integer.parseInt(Minutes.getText().toString());
-        int seconds = Integer.parseInt(Seconds.getText().toString());
-
         TextView Lat = (TextView)findViewById(R.id.currentLocationLat);
         TextView Lng = (TextView)findViewById(R.id.currentLocationLng);
 
-        double lat = Double.parseDouble(Lat.getText().toString());
-        double lng = Double.parseDouble(Lng.getText().toString());
-
-        int year = 2016;
-        AstroDateTime date = new AstroDateTime(year,5,27,hours,minutes,seconds,1,false);
-        AstroCalculator.Location location = new AstroCalculator.Location(lat,lng);
-
-        AstroCalculator calculator = new AstroCalculator(date,location);
-
-        AstroCalculator.MoonInfo moonInfo = calculator.getMoonInfo();
-        Moon.setMoon(moonInfo);
+        CurrentLocalization.lat = Double.parseDouble(Lat.getText().toString());
+        CurrentLocalization.lng = Double.parseDouble(Lng.getText().toString());
 
         pager = (ViewPager)findViewById(R.id.pager);
 

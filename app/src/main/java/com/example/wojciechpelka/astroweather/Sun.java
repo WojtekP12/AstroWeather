@@ -1,18 +1,16 @@
 package com.example.wojciechpelka.astroweather;
 
-import android.widget.TextView;
-
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
 
 /**
- * Created by Wojciech on 2016-05-27.
+ * Created by 187783 on 5/30/2016.
  */
-public class Moon
+public class Sun
 {
-    private static AstroCalculator.MoonInfo moon;
+    private static AstroCalculator.SunInfo sun;
 
-    public static void setMoon()
+    public static void setSun()
     {
         CurrentTime.year = 2016;
         CurrentTime.month = 5;
@@ -23,15 +21,13 @@ public class Moon
 
         AstroCalculator calculator = new AstroCalculator(date,location);
 
-        AstroCalculator.MoonInfo moonInfo = calculator.getMoonInfo();
+        AstroCalculator.SunInfo sunInfo = calculator.getSunInfo();
 
-        moon = moonInfo;
+        sun = sunInfo;
     }
 
-
-    public static AstroCalculator.MoonInfo getMoon()
+    public static AstroCalculator.SunInfo getSun()
     {
-        return moon;
+        return sun;
     }
-
 }
