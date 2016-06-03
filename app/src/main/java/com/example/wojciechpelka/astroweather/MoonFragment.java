@@ -19,11 +19,20 @@ import java.util.Calendar;
  */
 public class MoonFragment extends Fragment
 {
+
+    TextView moonRiseValue;
+    TextView moonSetValue;
+    TextView newMoonValue;
+    TextView fullMoonValue;
+    TextView phaseValue;
+    TextView lunationValue;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         final ViewGroup rootView;
         rootView = (ViewGroup)inflater.inflate(R.layout.moon_layout,container,false);
+        setFragmentControls(rootView);
 
         final Handler moonHandler = new Handler();
 
@@ -32,7 +41,7 @@ public class MoonFragment extends Fragment
             @Override
             public void run()
             {
-                setMoonInfo(rootView);
+                setMoonInfo();
                 moonHandler.postDelayed(this,5000);
             }
         },5000);
@@ -41,33 +50,27 @@ public class MoonFragment extends Fragment
         return rootView;
     }
 
-    public void setMoonInfo(ViewGroup rootView)
+    private void setFragmentControls(ViewGroup rootView)
+    {
+        moonRiseValue = (TextView)rootView.findViewById(R.id.moonriseValue);
+        moonSetValue = (TextView)rootView.findViewById(R.id.moonsetValue);
+        newMoonValue = (TextView)rootView.findViewById(R.id.newmoonValue);
+        fullMoonValue = (TextView)rootView.findViewById(R.id.fullmoonValue);
+        phaseValue = (TextView)rootView.findViewById(R.id.moonPhaseValue);
+        lunationValue = (TextView)rootView.findViewById(R.id.lunationValue);
+    }
+
+    public void setMoonInfo()
     {
         Moon.setMoon();
         AstroCalculator.MoonInfo moon = Moon.getMoon();
-        AstroDateTime moonRise = moon.getMoonrise();
-        AstroDateTime moonSet = moon.getMoonset();
-        AstroDateTime newMoon = moon.getNextNewMoon();
-        AstroDateTime fullMoon = moon.getNextFullMoon();
-        double phase = moon.getAge();
-        double lunation = moon.getIllumination();
 
-        TextView moonRiseValue = (TextView)rootView.findViewById(R.id.moonriseValue);
-        moonRiseValue.setText(moonRise.getDay() + " - " + moonRise.getMonth() + " - " + moonRise.getYear());
-
-        TextView moonSetValue = (TextView)rootView.findViewById(R.id.moonsetValue);
-        moonSetValue.setText(moonSet.getDay() + " - " + moonSet.getMonth() + " - " + moonSet.getYear());
-
-        TextView newMoonValue = (TextView)rootView.findViewById(R.id.newmoonValue);
-        newMoonValue.setText(newMoon.getDay() + " - " + newMoon.getMonth() + " - " +newMoon.getYear());
-
-        TextView fullMoonValue = (TextView)rootView.findViewById(R.id.fullmoonValue);
-        fullMoonValue.setText(fullMoon.getDay() + " - " + fullMoon.getMonth() + " - " +fullMoon.getYear());
-
-        TextView phaseValue = (TextView)rootView.findViewById(R.id.moonPhaseValue);
-        phaseValue.setText(String.valueOf(phase));
-
-        TextView lunationValue = (TextView)rootView.findViewById(R.id.lunationValue);
-        lunationValue.setText(String.valueOf(lunation));
+        moonRiseValue.setText(moon.getMoonrise().getHour() + ":" + moon.getMoonrise().getMinute() + ":" + moon.getMoonrise().getSecond());
+        //moonRiseValue.setText(CurrentTime.year + ":" + CurrentTime.month + ":" + CurrentTime.day);
+        moonSetValue.setText(moon.getMoonset().getHour() + ":" + moon.getMoonset().getMinute() + ":" + moon.getMoonset().getSecond());
+        newMoonValue.setText(moon.getNextNewMoon().getDay() + " - " + moon.getNextNewMoon().getMonth() + " - " + moon.getNextNewMoon().getYear());
+        fullMoonValue.setText(moon.getNextFullMoon().getDay() + " - " + moon.getNextFullMoon().getMonth() + " - " +moon.getNextFullMoon().getYear());
+        phaseValue.setText(String.valueOf(((Math.round(moon.getAge()*100.0))/100.0)+"%"));
+        lunationValue.setText(String.valueOf((Math.round(moon.getIllumination()*1000000.0))/1000000.0));
     }
 }

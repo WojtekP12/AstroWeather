@@ -32,10 +32,30 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        CurrentTime.SetCurrentDate();
+
         Hours = (TextView)findViewById(R.id.currentTimeHours);
         Minutes = (TextView)findViewById(R.id.currentTimeMinutes);
         Seconds = (TextView)findViewById(R.id.currentTimeSeconds);
 
+        SetApplicationClock();
+
+        TextView Lat = (TextView)findViewById(R.id.currentLocationLat);
+        TextView Lng = (TextView)findViewById(R.id.currentLocationLng);
+
+        CurrentLocalization.lat = Double.parseDouble(Lat.getText().toString());
+        CurrentLocalization.lng = Double.parseDouble(Lng.getText().toString());
+
+        pager = (ViewPager)findViewById(R.id.pager);
+
+        if(pager!=null)
+        {
+            pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+            pager .setAdapter(pagerAdapter);
+        }
+    }
+
+    private void SetApplicationClock() {
         Thread t = new Thread()
         {
             @Override
@@ -56,12 +76,12 @@ public class MainActivity extends ActionBarActivity
                                 int hours = c.get(Calendar.HOUR);
                                 int minutes = c.get(Calendar.MINUTE);
                                 int seconds = c.get(Calendar.SECOND);
-                                CurrentTime.hour = hours;
-                                CurrentTime.minute = minutes;
-                                CurrentTime.second = seconds;
-                                Hours.setText(hours+"");
-                                Minutes.setText(minutes+"");
-                                Seconds.setText(seconds+"");
+                                CurrentTime.setHour(hours);
+                                CurrentTime.setMinute(minutes);
+                                CurrentTime.setSecond(seconds);
+                                Hours.setText(CurrentTime.getHour() + "");
+                                Minutes.setText(CurrentTime.getFormattedMinute()+"");
+                                Seconds.setText(CurrentTime.getFormattedSecond()+"");
                             }
                         });
                     }
@@ -71,28 +91,14 @@ public class MainActivity extends ActionBarActivity
         };
 
         t.start();
-
-        TextView Lat = (TextView)findViewById(R.id.currentLocationLat);
-        TextView Lng = (TextView)findViewById(R.id.currentLocationLng);
-
-        CurrentLocalization.lat = Double.parseDouble(Lat.getText().toString());
-        CurrentLocalization.lng = Double.parseDouble(Lng.getText().toString());
-
-        pager = (ViewPager)findViewById(R.id.pager);
-
-        if(pager!=null)
-        {
-            pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-            pager .setAdapter(pagerAdapter);
-        }
     }
+
 
     @Override
     public void onBackPressed()
     {
         if(pager.getCurrentItem() == 0)
         {
-            //super.onBackPressed();
             pager.setCurrentItem(pager.getCurrentItem());
         }
         else
@@ -109,6 +115,5 @@ public class MainActivity extends ActionBarActivity
 
         return super.onCreateOptionsMenu(menu);
     }
-
 
 }

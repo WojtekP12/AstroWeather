@@ -17,54 +17,63 @@ import com.astrocalculator.AstroDateTime;
  */
 public class SunFragment extends Fragment
 {
+    TextView sunRiseTimeValue;
+    TextView sunRiseAzimuthValue;
+    TextView sunSetTimeValue;
+    TextView sunSetAzimuthValue;
+    TextView dawnValue;
+    TextView twilightValue;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         final ViewGroup rootView;
         rootView = (ViewGroup)inflater.inflate(R.layout.sun_layout,container,false);
 
-        final Handler sunHandler = new Handler();
-
-        sunHandler.postDelayed(new Runnable()
-        {
-            @Override
-            public void run()
-            {
-                setSunInfo(rootView);
-                sunHandler.postDelayed(this,5000);
-            }
-        },5000);
+        setFragmentControls(rootView);
+        SetSunInfoEvery(1);
 
         return rootView;
     }
 
-    public void setSunInfo(ViewGroup rootView)
+    private void setFragmentControls(ViewGroup rootView)
+    {
+        sunRiseTimeValue = (TextView)rootView.findViewById(R.id.sunriseTimeValue);
+        sunRiseAzimuthValue = (TextView)rootView.findViewById(R.id.sunriseAzimuthValue);
+        sunSetTimeValue = (TextView)rootView.findViewById(R.id.sunsetTimeValue);
+        sunSetAzimuthValue = (TextView)rootView.findViewById(R.id.sunsetAzimuthValue);
+        dawnValue = (TextView)rootView.findViewById(R.id.sunDawnValue);
+        twilightValue = (TextView)rootView.findViewById(R.id.sunTwilightValue);
+    }
+
+
+    private void setSunInfo()
     {
         Sun.setSun();
         AstroCalculator.SunInfo sun = Sun.getSun();
-        AstroDateTime sunRiseTime = sun.getSunrise();
-        double sunRiseAzimuth = sun.getAzimuthRise();
-        AstroDateTime sunSet = sun.getSunset();
-        double sunSetAzimuth = sun.getAzimuthSet();
-        AstroDateTime dawn = sun.getTwilightEvening();
-        AstroDateTime twilight = sun.getTwilightMorning();
 
-        TextView sunRiseTimeValue = (TextView)rootView.findViewById(R.id.sunriseTimeValue);
-        sunRiseTimeValue.setText(sunRiseTime.getDay() + " - " + sunRiseTime.getMonth() + " - " + sunRiseTime.getYear() + " " + sunRiseTime.getHour() +"/"+sunRiseTime.getMinute()+"/"+sunRiseTime.getSecond());
+        sunRiseTimeValue.setText(sun.getSunrise().getHour() +":"+sun.getSunrise().getMinute()+":"+sun.getSunrise().getSecond());
+        sunRiseAzimuthValue.setText(String.valueOf(sun.getAzimuthRise()));
+        sunSetTimeValue.setText(sun.getSunset().getHour() +":"+sun.getSunset().getMinute()+":" +sun.getSunset().getSecond());
+        sunSetAzimuthValue.setText(String.valueOf(sun.getAzimuthSet()));
+        dawnValue.setText(sun.getTwilightEvening().getHour() +":"+sun.getTwilightEvening().getMinute()+":" +sun.getTwilightEvening().getSecond());
+        twilightValue.setText(sun.getTwilightMorning().getHour() +":"+sun.getTwilightMorning().getMinute()+":" +sun.getTwilightMorning().getSecond());
+    }
 
-        TextView sunRiseAzimuthValue = (TextView)rootView.findViewById(R.id.sunriseAzimuthValue);
-        sunRiseAzimuthValue.setText(String.valueOf(sunRiseAzimuth));
+    private void SetSunInfoEvery(int minutes)
+    {
+        final int _m = minutes;
+        final Handler sunHandler = new Handler();
 
-        TextView sunSetTimeValue = (TextView)rootView.findViewById(R.id.sunsetTimeValue);
-        sunSetTimeValue.setText(sunSet.getDay() + " - " + sunSet.getMonth() + " - " + sunSet.getYear() + " " + sunSet.getHour() +"/"+sunSet.getMinute()+"/" +sunSet.getSecond());
-
-        TextView sunSetAzimuthValue = (TextView)rootView.findViewById(R.id.sunsetAzimuthValue);
-        sunSetAzimuthValue.setText(String.valueOf(sunSetAzimuth));
-
-        TextView dawnValue = (TextView)rootView.findViewById(R.id.sunDawnValue);
-        dawnValue.setText(dawn.getDay() + " - " + dawn.getMonth() + " - " + dawn.getYear() + " " + dawn.getHour() +"/"+dawn.getMinute()+"/" +dawn.getSecond());
-
-        TextView twilightValue = (TextView)rootView.findViewById(R.id.sunTwilightValue);
-        twilightValue.setText(twilight.getDay() + " - " + twilight.getMonth() + " - " + twilight.getYear() + " " + twilight.getHour() +"/"+twilight.getMinute()+"/" +twilight.getSecond());
+        sunHandler.postDelayed(new Runnable()
+        {
+            int time = _m*1000;
+            @Override
+            public void run()
+            {
+                setSunInfo();
+                sunHandler.postDelayed(this,time);
+            }
+        },_m*1000);
     }
 }

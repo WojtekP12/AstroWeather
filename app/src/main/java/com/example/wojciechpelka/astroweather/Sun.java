@@ -12,17 +12,7 @@ public class Sun
 
     public static void setSun()
     {
-        CurrentTime.year = 2016;
-        CurrentTime.month = 5;
-        CurrentTime.day = 28;
-
-        AstroDateTime date = new AstroDateTime(CurrentTime.year,CurrentTime.month,CurrentTime.day,CurrentTime.hour,CurrentTime.minute,CurrentTime.second,1,false);
-        AstroCalculator.Location location = new AstroCalculator.Location(CurrentLocalization.lat,CurrentLocalization.lng);
-
-        AstroCalculator calculator = new AstroCalculator(date,location);
-
-        AstroCalculator.SunInfo sunInfo = calculator.getSunInfo();
-
+        AstroCalculator.SunInfo sunInfo = AstroCalculatorData.GetAstroData().getSunInfo();
         sun = sunInfo;
     }
 
