@@ -1,6 +1,8 @@
 package com.example.wojciechpelka.astroweather;
 
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -9,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.astrocalculator.AstroCalculator;
@@ -43,8 +46,8 @@ public class MainActivity extends ActionBarActivity
         TextView Lat = (TextView)findViewById(R.id.currentLocationLat);
         TextView Lng = (TextView)findViewById(R.id.currentLocationLng);
 
-        CurrentLocalization.lat = Double.parseDouble(Lat.getText().toString());
-        CurrentLocalization.lng = Double.parseDouble(Lng.getText().toString());
+        Lat.setText(String.valueOf(CurrentLocalization.lat));
+        Lng.setText(String.valueOf(CurrentLocalization.lng));
 
         pager = (ViewPager)findViewById(R.id.pager);
 
@@ -114,6 +117,31 @@ public class MainActivity extends ActionBarActivity
         inflater.inflate(R.menu.menu, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        final Context context = this;
+        //Handle item selection
+        switch (item.getItemId())
+        {
+            case R.id.action_exit:
+            {
+                System.exit(0);
+                return true;
+            }
+            case R.id.action_settings:
+            {
+                Intent intent = new Intent(context, SettingsActivity.class);
+                finish();
+                startActivity(intent);
+
+            }
+            default:
+            {
+                return super.onOptionsItemSelected(item);
+            }
+        }
     }
 
 }

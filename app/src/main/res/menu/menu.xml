@@ -2,12 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <!-- Search / will display always -->
-    <item android:id="@+id/action_setLocalization"
-        android:title="Localization"
-        app:showAsAction="never"/>
-
-    <item android:id="@+id/action_about"
-        android:title="Refreshing frequency"
+    <item android:id="@+id/action_settings"
+        android:title="Settings"
         app:showAsAction="never"/>
 
     <!-- Location Found -->

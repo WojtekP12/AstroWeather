@@ -34,20 +34,25 @@ public class MoonFragment extends Fragment
         rootView = (ViewGroup)inflater.inflate(R.layout.moon_layout,container,false);
         setFragmentControls(rootView);
 
+        setMoonDataEvery(Settings.getRefresh());
+        return rootView;
+    }
+
+    private void setMoonDataEvery(int minutes)
+    {
+        final int _m = minutes;
         final Handler moonHandler = new Handler();
 
         moonHandler.postDelayed(new Runnable()
         {
+            int time = _m*1000;
             @Override
             public void run()
             {
                 setMoonInfo();
-                moonHandler.postDelayed(this,5000);
+                moonHandler.postDelayed(this,time);
             }
-        },5000);
-
-
-        return rootView;
+        },_m*1000);
     }
 
     private void setFragmentControls(ViewGroup rootView)
