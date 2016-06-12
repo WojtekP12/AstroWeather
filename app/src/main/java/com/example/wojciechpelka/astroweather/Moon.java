@@ -11,6 +11,7 @@ import com.astrocalculator.AstroDateTime;
 public class Moon
 {
     private static AstroCalculator.MoonInfo moon;
+    public static int phase;
 
     public static void setMoon()
     {

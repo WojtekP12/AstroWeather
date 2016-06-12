@@ -9,9 +9,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.astrocalculator.AstroCalculator;
@@ -142,6 +144,17 @@ public class MainActivity extends ActionBarActivity
                 return super.onOptionsItemSelected(item);
             }
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keycode, KeyEvent e) {
+        switch(keycode) {
+            case KeyEvent.KEYCODE_BACK:
+                System.exit(0);
+                return true;
+        }
+
+        return super.onKeyDown(keycode, e);
     }
 
 }

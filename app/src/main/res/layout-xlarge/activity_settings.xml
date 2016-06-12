@@ -1,0 +1,130 @@
+<TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="48dp"
+            android:text="Settings"
+            android:layout_span="3"
+            android:padding="28dip"
+            android:textColor="#000459"
+            android:textAlignment="center"
+            android:textStyle="bold" />
+    </TableRow>
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="36dp"
+            android:text="Astronomic data refresh rate"
+            android:layout_span="3"
+            android:padding="28dip"
+            android:textColor="#000000"
+            android:textAlignment="textStart"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+    android:layout_height="wrap_content"
+    android:layout_width="fill_parent"
+    android:gravity="center_horizontal">
+
+        <TextView
+            android:textSize="28dp"
+            android:padding="28dip"
+            android:text="Refresh rate"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+        <EditText
+            android:textSize="28dp"
+            android:id="@+id/refreshRateValue"
+            android:inputType="number"
+            android:layout_weight="1"
+            android:textColor="#000000"/>
+    </TableRow>
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="36dp"
+            android:padding="28dip"
+            android:text="Localisation"
+            android:layout_span="3"
+            android:textColor="#000000"
+            android:textAlignment="textStart"
+            android:textStyle="bold" />
+    </TableRow>
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:textSize="28dp"
+            android:padding="28dip"
+            android:text="Latitude"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+        <EditText
+            android:textSize="28dp"
+            android:id="@+id/LatValue"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:textColor="#000000"/>
+    </TableRow>
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:textSize="28dp"
+            android:padding="28dip"
+            android:text="Longitude"
+            android:layout_weight="1"
+            android:textColor="#000000"
+            android:gravity="center"/>
+
+        <EditText
+            android:textSize="28dp"
+            android:id="@+id/LngValue"
+            android:inputType="numberDecimal"
+            android:layout_weight="1"
+            android:textColor="#000000"/>
+    </TableRow>
+    <TableRow
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:gravity="center_horizontal">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="48dp"
+            android:text="Save"
+            android:layout_span="3"
+            android:padding="28dip"
+            android:textColor="#000459"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:id="@+id/saveButton" />
+    </TableRow>
+</TableLayout>

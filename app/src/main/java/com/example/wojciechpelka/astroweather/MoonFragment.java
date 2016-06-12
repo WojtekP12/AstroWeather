@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.astrocalculator.AstroCalculator;
@@ -26,6 +27,7 @@ public class MoonFragment extends Fragment
     TextView fullMoonValue;
     TextView phaseValue;
     TextView lunationValue;
+    ImageView moonImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -63,6 +65,7 @@ public class MoonFragment extends Fragment
         fullMoonValue = (TextView)rootView.findViewById(R.id.fullmoonValue);
         phaseValue = (TextView)rootView.findViewById(R.id.moonPhaseValue);
         lunationValue = (TextView)rootView.findViewById(R.id.lunationValue);
+        moonImage = (ImageView)rootView.findViewById(R.id.moonImage);
     }
 
     public void setMoonInfo()
@@ -76,6 +79,36 @@ public class MoonFragment extends Fragment
         newMoonValue.setText(moon.getNextNewMoon().getDay() + " - " + moon.getNextNewMoon().getMonth() + " - " + moon.getNextNewMoon().getYear());
         fullMoonValue.setText(moon.getNextFullMoon().getDay() + " - " + moon.getNextFullMoon().getMonth() + " - " +moon.getNextFullMoon().getYear());
         phaseValue.setText(String.valueOf(((Math.round(moon.getAge()*100.0))/100.0)+"%"));
+        Moon.phase = (int)(Math.round(moon.getAge()*100.0)/100.0);
         lunationValue.setText(String.valueOf((Math.round(moon.getIllumination()*1000000.0))/1000000.0));
+        setMoonPhaseImage(0);
+    }
+
+    private void setMoonPhaseImage(int phase)
+    {
+        if(moonImage!=null)
+        {
+            if(phase==0)
+            {
+                moonImage.setImageResource(R.mipmap.moon_0);
+            }
+            if(phase>0 && phase<45)
+            {
+                moonImage.setImageResource(R.mipmap.moon_0_45);
+            }
+            if(phase>=45 && phase<55)
+            {
+                moonImage.setImageResource(R.mipmap.moon_45_55);
+            }
+            if(phase>=55 && phase<100)
+            {
+                moonImage.setImageResource(R.mipmap.moon_55_80);
+            }
+            if(phase==100)
+            {
+                moonImage.setImageResource(R.mipmap.moon_100);
+            }
+        }
+
     }
 }

@@ -24,14 +24,24 @@ public class SettingsActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 EditText latValue = (EditText)findViewById(R.id.LatValue);
-                CurrentLocalization.lat = Double.parseDouble(latValue.getText().toString());
                 EditText lngValue = (EditText)findViewById(R.id.LngValue);
-                CurrentLocalization.lng = Double.parseDouble(lngValue.getText().toString());
                 EditText refreshRate = (EditText)findViewById(R.id.refreshRateValue);
-                Settings.setRefresh(Integer.parseInt(refreshRate.getText().toString()));
-                finish();
-                Intent intent = new Intent(v.getContext(), MainActivity.class);
-                startActivity(intent);
+
+                try
+                {
+                    CurrentLocalization.lat = Double.parseDouble(latValue.getText().toString());
+                    CurrentLocalization.lng = Double.parseDouble(lngValue.getText().toString());
+                    Settings.setRefresh(Integer.parseInt(refreshRate.getText().toString()));
+                    finish();
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    startActivity(intent);
+                }
+                catch(NumberFormatException ex)
+                {
+                    finish();
+                    Intent intent = new Intent(v.getContext(), MainActivity.class);
+                    startActivity(intent);
+                }
             }
         });
     }
