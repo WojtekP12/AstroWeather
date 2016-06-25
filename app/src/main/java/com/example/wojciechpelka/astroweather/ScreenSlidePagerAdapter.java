@@ -20,13 +20,32 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter
     @Override
     public Fragment getItem(int position)
     {
-        if(position==0)
+        switch (position)
         {
-            return new MoonFragment();
-        }
-        else
-        {
-            return new SunFragment();
+            case 0:
+            {
+                return new MoonFragment();
+            }
+            case 1:
+            {
+                return new SunFragment();
+            }
+            case 2:
+            {
+                return new BasicWeatherFragment();
+            }
+            case 3:
+            {
+                return new AdditionalWeatherFragment();
+            }
+            case 4:
+            {
+                return new ForecastFragment();
+            }
+            default:
+            {
+                return new MoonFragment();
+            }
         }
     }
 

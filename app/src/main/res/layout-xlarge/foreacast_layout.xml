@@ -1,6 +1,418 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<!-- fragment_screen_slide_page.xml -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/basicWeatherContent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
-</LinearLayout>
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="48dp"
+                android:text="Forecast"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000459"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Day1"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day1TemperatureValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Description"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day1DescriptionValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Day2"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day2TemperatureValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Description"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day2DescriptionValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Day3"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day3TemperatureValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Description"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:textSize="24dp"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day3DescriptionValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Day4"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day4TemperatureValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Description"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day4DescriptionValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Day5"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day5TemperatureValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Description"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day5DescriptionValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Day6"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:layout_weight="1"
+                android:textSize="24dp"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day6TemperatureValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Description"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day6DescriptionValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="Day7"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day7TemperatureValue" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Description"
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <TextView
+                android:text="loading..."
+                android:textSize="24dp"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"
+                android:id="@+id/day7DescriptionValue" />
+        </TableRow>
+
+
+    </TableLayout>
+
+</ScrollView>
