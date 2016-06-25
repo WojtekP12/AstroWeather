@@ -30,34 +30,56 @@ public class MainActivity extends ActionBarActivity
     private PagerAdapter pagerAdapter;
 
     TextView Hours,Minutes,Seconds;
-
+    TextView Lat, Lng;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        DeviceSettings.config = getResources().getConfiguration();
+
         CurrentTime.SetCurrentDate();
 
-        Hours = (TextView)findViewById(R.id.currentTimeHours);
-        Minutes = (TextView)findViewById(R.id.currentTimeMinutes);
-        Seconds = (TextView)findViewById(R.id.currentTimeSeconds);
+        initCurrentTimeControls();
 
         SetApplicationClock();
 
-        TextView Lat = (TextView)findViewById(R.id.currentLocationLat);
-        TextView Lng = (TextView)findViewById(R.id.currentLocationLng);
+        initCurrentLocationControls();
 
-        Lat.setText(String.valueOf(CurrentLocalization.lat));
-        Lng.setText(String.valueOf(CurrentLocalization.lng));
+        setCurrentLocationControls();
 
-        pager = (ViewPager)findViewById(R.id.pager);
+        initMainViewPager();
 
+        setMainViewPager();
+    }
+
+    private void setMainViewPager() {
         if(pager!=null)
         {
             pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
             pager .setAdapter(pagerAdapter);
         }
+    }
+
+    private void initMainViewPager() {
+        pager = (ViewPager)findViewById(R.id.pager);
+    }
+
+    private void setCurrentLocationControls() {
+        Lat.setText(String.valueOf(CurrentLocalization.lat));
+        Lng.setText(String.valueOf(CurrentLocalization.lng));
+    }
+
+    private void initCurrentLocationControls() {
+        Lat = (TextView)findViewById(R.id.currentLocationLat);
+        Lng = (TextView)findViewById(R.id.currentLocationLng);
+    }
+
+    private void initCurrentTimeControls() {
+        Hours = (TextView)findViewById(R.id.currentTimeHours);
+        Minutes = (TextView)findViewById(R.id.currentTimeMinutes);
+        Seconds = (TextView)findViewById(R.id.currentTimeSeconds);
     }
 
     private void SetApplicationClock() {

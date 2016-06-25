@@ -1,5 +1,6 @@
 package com.example.wojciechpelka.astroweather;
 
+import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -47,6 +48,17 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter
                 return new MoonFragment();
             }
         }
+    }
+
+    @Override
+    public float getPageWidth(int position) {
+        float nbPages;
+        if (DeviceSettings.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            nbPages = 2;
+        } else {
+            nbPages = 1;
+        }
+        return (1 / nbPages);
     }
 
     @Override
