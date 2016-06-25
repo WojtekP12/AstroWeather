@@ -84,9 +84,9 @@ public class MainActivity extends ActionBarActivity
                                 CurrentTime.setHour(hours);
                                 CurrentTime.setMinute(minutes);
                                 CurrentTime.setSecond(seconds);
-                                Hours.setText(CurrentTime.getHour() + "");
-                                Minutes.setText(CurrentTime.getFormattedMinute()+"");
-                                Seconds.setText(CurrentTime.getFormattedSecond()+"");
+                                Hours.setText(TimeFormatter.format(CurrentTime.getHour()) + "");
+                                Minutes.setText(TimeFormatter.format(CurrentTime.getMinute())+"");
+                                Seconds.setText(TimeFormatter.format(CurrentTime.getSecond())+"");
                             }
                         });
                     }

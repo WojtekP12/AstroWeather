@@ -1,6 +1,6 @@
 <!-- fragment_screen_slide_page.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content"
+    android:id="@+id/Mooncontent"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
@@ -164,7 +164,7 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Value :"
+                android:text="Days :"
                 android:layout_weight="1"
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"/>
@@ -186,7 +186,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="18dp"
-                android:text="Lunation"
+                android:text="Illumination"
                 android:layout_span="3"
                 android:padding="18dip"
                 android:textColor="#000000"
@@ -199,7 +199,7 @@
             android:gravity="center_horizontal">
 
             <TextView
-                android:text="Day :"
+                android:text="Value :"
                 android:layout_weight="1"
                 android:textColor="#000000"
                 android:padding="18dip" android:gravity="center"/>

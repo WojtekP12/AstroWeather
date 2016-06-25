@@ -10,7 +10,7 @@ public class AstroCalculatorData
 {
     public static AstroCalculator GetAstroData()
     {
-        AstroDateTime date = new AstroDateTime(CurrentTime.getYear(),CurrentTime.getMonth(),CurrentTime.getDay(),CurrentTime.getHour(),CurrentTime.getHour(),CurrentTime.getSecond(),1,false);
+        AstroDateTime date = new AstroDateTime(CurrentTime.getYear(),CurrentTime.getMonth(),CurrentTime.getDay(),CurrentTime.getHour(),CurrentTime.getHour(),CurrentTime.getSecond(),2,false);
         AstroCalculator.Location location = new AstroCalculator.Location(CurrentLocalization.lat,CurrentLocalization.lng);
 
         AstroCalculator calculator = new AstroCalculator(date,location);

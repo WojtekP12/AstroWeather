@@ -28,7 +28,7 @@ public class CurrentTime
 
     public static String getFormattedMonth()
     {
-        return format(month);
+        return TimeFormatter.format(month);
     }
 
     public static void setMonth(int month) {
@@ -41,7 +41,7 @@ public class CurrentTime
 
     public static String getFormattedDay()
     {
-        return format(day);
+        return TimeFormatter.format(day);
     }
 
     public static void setDay(int day) {
@@ -62,7 +62,7 @@ public class CurrentTime
 
     public static String getFormattedMinute()
     {
-        return format(minute);
+        return TimeFormatter.format(minute);
     }
 
     public static void setMinute(int minute) {
@@ -74,7 +74,7 @@ public class CurrentTime
     }
     public static String getFormattedSecond()
     {
-         return format(second);
+         return TimeFormatter.format(second);
     }
 
     public static void setSecond(int second) {
@@ -88,17 +88,4 @@ public class CurrentTime
         month = calendar.get(Calendar.MONTH)+1;
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
-
-    private static String format(int element)
-    {
-        if(element<10)
-        {
-            return "0"+element;
-        }
-        else
-        {
-            return String.valueOf(element);
-        }
-    }
-
 }
