@@ -41,7 +41,24 @@ public class Settings
         Settings.refresh = refresh;
     }
 
+    private static String City;
+    private static String Country;
+    private static String speedUnit;
+    private static String degreesUnit;
 
+    public static String getCity() {
+        return City;
+    }
 
+    public static String getCountry() {
+        return Country;
+    }
 
+    public static String getSpeedUnit() {
+        return speedUnit;
+    }
+
+    public static String getDegreesUnit() {
+        return degreesUnit;
+    }
 }
