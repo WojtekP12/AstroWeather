@@ -26,8 +26,7 @@ public class Units implements JSONPopulator {
     }
 
     @Override
-    public void populate(JSONObject data)
-    {
+    public void populate(JSONObject data) {
         temperature = data.optString("temperature");
         pressure = data.optString("pressure");
         speed = data.optString("speed");

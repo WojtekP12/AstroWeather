@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,6 +20,9 @@ import android.widget.TextView;
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Timer;
@@ -37,6 +41,25 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        try
+        {
+            String path = getFilesDir().getAbsolutePath() + File.separator + "app_settings.bin";
+            ApplicationSettings.setSettings((Settings) loadClassFile(new File(path)));
+        }
+        catch (Exception ex)
+        {
+
+        }
+
+        if(ApplicationSettings.getSettings() == null)
+        {
+            ApplicationSettings.setSettings(new Settings(51.53,-0.24,1,"London","England","mph","F"));
+
+            Intent intent = new Intent(this, SettingsActivity.class);
+            finish();
+            startActivity(intent);
+        }
+
         DeviceSettings.config = getResources().getConfiguration();
 
         CurrentTime.SetCurrentDate();
@@ -54,6 +77,21 @@ public class MainActivity extends ActionBarActivity
         setMainViewPager();
     }
 
+    public Object loadClassFile(File f)
+    {
+        try
+        {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            Object o = ois.readObject();
+            return o;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
     private void setMainViewPager() {
         if(pager!=null)
         {
@@ -67,8 +105,8 @@ public class MainActivity extends ActionBarActivity
     }
 
     private void setCurrentLocationControls() {
-        Lat.setText(String.valueOf(CurrentLocalization.lat));
-        Lng.setText(String.valueOf(CurrentLocalization.lng));
+        Lat.setText(String.valueOf(ApplicationSettings.getSettings().getLat()));
+        Lng.setText(String.valueOf(ApplicationSettings.getSettings().getLng()));
     }
 
     private void initCurrentLocationControls() {

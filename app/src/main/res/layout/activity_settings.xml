@@ -1,121 +1,227 @@
-<TableLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
-
-
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity="center_horizontal">
-        <TextView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Mooncontent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    <TableLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+
+
+        <TableRow
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:text="Settings"
-            android:layout_span="3"
-            android:padding="18dip"
-            android:textColor="#000459"
-            android:textAlignment="center"
-            android:textStyle="bold" />
-    </TableRow>
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="Settings"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000459"
+                android:textAlignment="center"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Astronomic data refresh rate"
-            android:layout_span="3"
-            android:padding="18dip"
-            android:textColor="#000000"
-            android:textAlignment="textStart"
-            android:textStyle="bold" />
-    </TableRow>
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Astronomic data refresh rate"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
 
-    <TableRow
-    android:layout_height="wrap_content"
-    android:layout_width="fill_parent"
-    android:gravity="center_horizontal">
-
-        <TextView
-            android:text="Refresh rate"
-            android:layout_weight="1"
-            android:textColor="#000000"
-            android:padding="18dip" android:gravity="center"/>
-
-        <EditText
-            android:id="@+id/refreshRateValue"
-            android:inputType="number"
-            android:layout_weight="1"
-            android:textColor="#000000"/>
-    </TableRow>
-    <TableRow
+        <TableRow
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:gravity="center_horizontal">
-        <TextView
-            android:layout_width="match_parent"
+
+            <TextView
+                android:text="Refresh rate"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/refreshRateValue"
+                android:inputType="number"
+                android:layout_weight="1"
+                android:textColor="#000000"/>
+        </TableRow>
+        <TableRow
             android:layout_height="wrap_content"
-            android:textSize="18dp"
-            android:text="Localisation"
-            android:layout_span="3"
-            android:padding="18dip"
-            android:textColor="#000000"
-            android:textAlignment="textStart"
-            android:textStyle="bold" />
-    </TableRow>
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:text="Latitude"
-            android:layout_weight="1"
-            android:textColor="#000000"
-            android:padding="18dip" android:gravity="center"/>
-
-        <EditText
-            android:id="@+id/LatValue"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"
-            android:textColor="#000000"/>
-    </TableRow>
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:text="Longitude"
-            android:layout_weight="1"
-            android:textColor="#000000"
-            android:padding="18dip" android:gravity="center"/>
-
-        <EditText
-            android:id="@+id/LngValue"
-            android:inputType="numberDecimal"
-            android:layout_weight="1"
-            android:textColor="#000000"/>
-    </TableRow>
-    <TableRow
-        android:layout_height="wrap_content"
-        android:layout_width="fill_parent"
-        android:gravity="center_horizontal">
-        <Button
-            android:layout_width="match_parent"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Localisation"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:text="Save"
-            android:layout_span="3"
-            android:padding="18dip"
-            android:textColor="#000459"
-            android:textAlignment="center"
-            android:textStyle="bold"
-            android:id="@+id/saveButton" />
-    </TableRow>
-</TableLayout>
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Latitude"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/LatValue"
+                android:inputType="numberDecimal"
+                android:layout_weight="1"
+                android:textColor="#000000"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Longitude"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/LngValue"
+                android:inputType="numberDecimal"
+                android:layout_weight="1"
+                android:textColor="#000000"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Country"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/countryValue"
+                android:layout_weight="1"
+                android:textColor="#000000"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="City"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/cityValue"
+                android:layout_weight="1"
+                android:textColor="#000000"/>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="18dp"
+                android:text="Units"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000000"
+                android:textAlignment="textStart"
+                android:textStyle="bold" />
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Temperature"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <RadioButton android:id="@+id/fValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="F"
+                    android:onClick="onRadioButtonClicked"/>
+                <RadioButton android:id="@+id/cValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="C"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:text="Speed"
+                android:layout_weight="1"
+                android:textColor="#000000"
+                android:padding="18dip" android:gravity="center"/>
+
+            <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <RadioButton android:id="@+id/mphValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="mph"
+                    android:onClick="onRadioButtonClicked"/>
+                <RadioButton android:id="@+id/kmhValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="km/h"
+                    android:onClick="onRadioButtonClicked"/>
+            </RadioGroup>
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:gravity="center_horizontal">
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="24dp"
+                android:text="Save"
+                android:layout_span="3"
+                android:padding="18dip"
+                android:textColor="#000459"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:id="@+id/saveButton" />
+        </TableRow>
+    </TableLayout>
+</ScrollView>

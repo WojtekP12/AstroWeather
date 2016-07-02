@@ -1,64 +1,94 @@
 package com.example.wojciechpelka.astroweather;
 
+import java.io.Serializable;
+
 /**
  * Created by 187783 on 5/30/2016.
  */
-public class Settings
+public class Settings implements Serializable
 {
-
-    private static double lat;
-    public static double getLat()
+    private double lat;
+    public double getLat()
     {
         return lat;
     }
 
-    public static void setLat(double lat)
+    public void setLat(double lat)
     {
-        Settings.lat = lat;
+        this.lat = lat;
     }
 
 
-    private static double lng;
-    public static double getLng()
+    private double lng;
+    public double getLng()
     {
         return lng;
     }
 
-    public static void setLng(double lng)
+    public void setLng(double lng)
     {
-        Settings.lng = lng;
+        this.lng = lng;
     }
 
 
-    private static int refresh;
-    public static int getRefresh()
+    private int refresh;
+    public int getRefresh()
     {
         return refresh;
     }
 
-    public static void setRefresh(int refresh)
+    public void setRefresh(int refresh)
     {
-        Settings.refresh = refresh;
+        this.refresh = refresh;
     }
 
-    private static String City;
-    private static String Country;
-    private static String speedUnit;
-    private static String degreesUnit;
+    private String city;
+    private String country;
+    private String speedUnit;
+    private String degreesUnit;
 
-    public static String getCity() {
-        return City;
+    public String getCity() {
+        return city;
     }
 
-    public static String getCountry() {
-        return Country;
+    public String getCountry() {
+        return country;
     }
 
-    public static String getSpeedUnit() {
+    public String getSpeedUnit() {
         return speedUnit;
     }
 
-    public static String getDegreesUnit() {
+    public String getDegreesUnit() {
         return degreesUnit;
     }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public  void setCountry(String country) {
+        this.country = country;
+    }
+
+    public  void setSpeedUnit(String speedUnit) {
+        this.speedUnit = speedUnit;
+    }
+
+    public  void setDegreesUnit(String degreesUnit) {
+        this.degreesUnit = degreesUnit;
+    }
+
+    public Settings(double lat, double lng, int refresh, String city, String country, String speedUnit, String degreesUnit)
+    {
+        this.lat = lat;
+        this.lng = lng;
+        this.refresh = refresh;
+        this.city = city;
+        this.country = country;
+        this.speedUnit = speedUnit;
+        this.degreesUnit = degreesUnit;
+    }
+
+    public Settings() {}
 }

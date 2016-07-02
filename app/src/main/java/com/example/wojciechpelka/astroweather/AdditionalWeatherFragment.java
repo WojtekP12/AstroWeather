@@ -49,7 +49,7 @@ public class AdditionalWeatherFragment extends Fragment implements WeatherServic
         windDirectionValue = (TextView)rootView.findViewById(R.id.windDirectionValue);
 
         service = new YahooWeatherService(this);
-        service.refreashWeather("London, EN");
+        service.refreashWeather(ApplicationSettings.getSettings().getCity()+", "+ApplicationSettings.getSettings().getCountry());
 
         return rootView;
     }
@@ -65,7 +65,7 @@ public class AdditionalWeatherFragment extends Fragment implements WeatherServic
         Drawable weatherIconDrawable = getResources().getDrawable(resource,null);
 
         weatherImage.setImageDrawable(weatherIconDrawable);
-        windSpeedValue.setText(chanel.getWind().getWindSpeed() + " " + chanel.getUnits().getSpeed());
+        windSpeedValue.setText(UnitsConverter.speed(String.valueOf(chanel.getWind().getWindSpeed())));
         windDirectionValue.setText(chanel.getWind().getWindDirecetion());
         humidityValue.setText(chanel.getAtmosphere().getHumidity());
         visibilityValue.setText(chanel.getAtmosphere().getVisibility());
@@ -76,6 +76,6 @@ public class AdditionalWeatherFragment extends Fragment implements WeatherServic
     @Override
     public void serviceFailure(Exception ex)
     {
-        Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_LONG);
+        //Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_LONG);
     }
 }

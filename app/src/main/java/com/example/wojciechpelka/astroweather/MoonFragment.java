@@ -35,8 +35,15 @@ public class MoonFragment extends Fragment
         final ViewGroup rootView;
         rootView = (ViewGroup)inflater.inflate(R.layout.moon_layout,container,false);
         setFragmentControls(rootView);
+        if(ApplicationSettings.getSettings()!=null)
+        {
+            setMoonDataEvery(ApplicationSettings.getSettings().getRefresh());
+        }
+        else
+        {
+            setMoonDataEvery(1);
+        }
 
-        setMoonDataEvery(Settings.getRefresh());
         return rootView;
     }
 

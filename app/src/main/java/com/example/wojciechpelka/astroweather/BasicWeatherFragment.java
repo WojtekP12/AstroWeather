@@ -55,7 +55,7 @@ public class BasicWeatherFragment extends Fragment implements WeatherServiceCall
         airPressureValue = (TextView)rootView.findViewById(R.id.airPressureValue);
 
         service = new YahooWeatherService(this);
-        service.refreashWeather("London, EN");
+        service.refreashWeather(ApplicationSettings.getSettings().getCity()+", "+ApplicationSettings.getSettings().getCountry());
 
         return rootView;
     }
@@ -74,7 +74,7 @@ public class BasicWeatherFragment extends Fragment implements WeatherServiceCall
 
         titleValue.setText(chanel.getLocation().getCity());
         locationValue.setText(item.getLat() + ", " + item.getLng());
-        tempeartureValue.setText(item.getCondition().getTemperature()+" "+chanel.getUnits().getTemperature());
+        tempeartureValue.setText(UnitsConverter.temperature(String.valueOf(item.getCondition().getTemperature())));
         timeValue.setText(chanel.getTime());
         airPressureValue.setText(chanel.getAtmosphere().getPressure()+" "+chanel.getUnits().getPressure());
         descriptionValue.setText(item.getCondition().getDescription());

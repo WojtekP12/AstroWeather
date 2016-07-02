@@ -39,8 +39,14 @@ public class SunFragment extends Fragment
         final ViewGroup rootView;
         rootView = (ViewGroup)inflater.inflate(R.layout.sun_layout,container,false);
         setFragmentControls(rootView);
-        SetSunInfoEvery(Settings.getRefresh());
-
+        if(ApplicationSettings.getSettings()!=null)
+        {
+            SetSunInfoEvery(ApplicationSettings.getSettings().getRefresh());
+        }
+        else
+        {
+            SetSunInfoEvery(1);
+        }
         return rootView;
     }
 
