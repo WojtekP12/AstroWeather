@@ -1,6 +1,9 @@
 package com.example.wojciechpelka.astroweather;
 
+import android.annotation.TargetApi;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -61,7 +64,7 @@ public class SunFragment extends Fragment
     {
         dawnValue = (TextView)rootView.findViewById(R.id.sunDawnValue);
         twilightValue = (TextView)rootView.findViewById(R.id.sunTwilightValue);
-        sunImage = (ImageView)rootView.findViewById(R.id.moonImage);
+        sunImage = (ImageView)rootView.findViewById(R.id.sunImage);
     }
 
     private void setSunSetFragmentControls(ViewGroup rootView)
@@ -137,19 +140,22 @@ public class SunFragment extends Fragment
         },_m*1000);
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private int getSunImage()
     {
-        if(CurrentTime.getHour()>=12 && CurrentTime.getHour()<sunSetHour)
+        int currentHour = CurrentTime.getHour();
+
+        if(currentHour>=12 && currentHour<sunSetHour)
         {
-            return R.mipmap.sun;
+            return R.drawable.moon_0;
         }
-        else if(CurrentTime.getHour()>=sunRiseHour && CurrentTime.getHour()<12)
+        else if(currentHour>=sunRiseHour && currentHour<12)
         {
-            return R.mipmap.sunrise;
+            return R.drawable.sunrise;
         }
         else
         {
-            return R.mipmap.sunset;
+            return R.drawable.sunset;
         }
     }
 

@@ -2,6 +2,7 @@ package com.example.wojciechpelka.astroweather.data;
 
 import com.astrocalculator.AstroCalculator;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -42,8 +43,7 @@ public class Chanel implements JSONPopulator
     }
 
     @Override
-    public void populate(JSONObject data)
-    {
+    public void populate(JSONObject data) throws JSONException {
         units = new Units();
         units.populate(data.optJSONObject("units"));
 

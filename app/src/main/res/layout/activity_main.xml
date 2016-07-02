@@ -3,6 +3,10 @@
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@color/colorPrimaryDark"/>
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -83,10 +87,6 @@
                 android:id="@+id/currentLocationLng" />
         </TableRow>
     </TableLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/black"/>
     <android.support.v4.view.ViewPager
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/pager"

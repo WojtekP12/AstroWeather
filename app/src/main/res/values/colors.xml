@@ -3,4 +3,13 @@
     <color name="colorPrimary">#4b4b4b</color>
     <color name="colorPrimaryDark">#252525</color>
     <color name="colorAccent">#868686</color>
+    <color name="weatherBackGround">#2db9e4</color>
+    <color name="weatherBackGround_Dark">#0595c1</color>
+    <color name="MoonBackGround">#015169</color>
+    <color name="MoonBackGround_Dark">#003849</color>
+    <color name="SunBackGround">#f7d074</color>
+    <color name="SunBackGround_Dark">#fdb100</color>
+    <color name="BlackText">#000000</color>
+    <color name="WhiteText">#ffffff</color>
+    <color name="BlueText">#000459</color>
 </resources>

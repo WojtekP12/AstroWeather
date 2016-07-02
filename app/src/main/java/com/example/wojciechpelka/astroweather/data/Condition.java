@@ -1,5 +1,6 @@
 package com.example.wojciechpelka.astroweather.data;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -30,7 +31,8 @@ public class Condition implements JSONPopulator
     }
 
     @Override
-    public void populate(JSONObject data) {
+    public void populate(JSONObject data)
+    {
         code = data.optInt("code");
         temperature = data.optInt("temp");
         date = data.optString("date");

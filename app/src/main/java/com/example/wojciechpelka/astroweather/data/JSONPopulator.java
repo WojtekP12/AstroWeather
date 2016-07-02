@@ -1,5 +1,6 @@
 package com.example.wojciechpelka.astroweather.data;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -7,5 +8,5 @@ import org.json.JSONObject;
  */
 public interface JSONPopulator
 {
-    void populate(JSONObject data);
+    void populate(JSONObject data) throws JSONException;
 }

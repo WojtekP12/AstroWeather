@@ -1,6 +1,9 @@
 package com.example.wojciechpelka.astroweather;
 
+import android.annotation.TargetApi;
 import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -9,7 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.*;
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
 
@@ -115,27 +118,28 @@ public class MoonFragment extends Fragment
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public int getMoonImage(int phase)
     {
         if(phase == 0)
         {
-            return R.mipmap.moon_0;
+            return R.drawable.moon_0;
         }
         else if(phase > 0 && phase <45)
         {
-            return R.mipmap.moon_0_45;
+            return R.drawable.moon_0_45;
         }
         else if(phase >= 45 && phase <55)
         {
-            return R.mipmap.moon_45_55;
+            return R.drawable.moon_45_55;
         }
         else if(phase>=55 && phase <80)
         {
-            return R.mipmap.moon_55_80;
+            return R.drawable.moon_55_80;
         }
         else
         {
-            return R.mipmap.moon_100;
+            return R.drawable.moon_100;
         }
     }
 

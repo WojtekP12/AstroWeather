@@ -9,19 +9,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SettingsActivity extends AppCompatActivity {
 
     String speedUnit;
     String tempUnit;
 
+    List<String> listOfCountries = new ArrayList<>();
+    List<String> listOfCities = new ArrayList<>();
 
 
     @Override
@@ -32,12 +40,17 @@ public class SettingsActivity extends AppCompatActivity {
         final EditText latValue = (EditText) findViewById(R.id.LatValue);
         final EditText lngValue = (EditText) findViewById(R.id.LngValue);
         final EditText refreshRate = (EditText) findViewById(R.id.refreshRateValue);
-        final EditText countryValue = (EditText) findViewById(R.id.countryValue);
-        final EditText cityValue = (EditText) findViewById(R.id.cityValue);
+        final AutoCompleteTextView  countryValue = (AutoCompleteTextView ) findViewById(R.id.countryValue);
+        final AutoCompleteTextView  cityValue = (AutoCompleteTextView ) findViewById(R.id.cityValue);
         final RadioButton cValue = (RadioButton) findViewById(R.id.cValue);
         final RadioButton fValue = (RadioButton) findViewById(R.id.fValue);
         final RadioButton kmhValue = (RadioButton) findViewById(R.id.kmhValue);
         final RadioButton mphValue = (RadioButton) findViewById(R.id.mphValue);
+
+
+
+        final String listOfCountriesPath = getFilesDir().getAbsolutePath() + File.separator + "countries.bin";
+        final String listOfCitiesPath = getFilesDir().getAbsolutePath() + File.separator + "cities.bin";
 
         latValue.setText(String.valueOf(ApplicationSettings.getSettings().getLat()));
         lngValue.setText(String.valueOf(ApplicationSettings.getSettings().getLng()));
@@ -49,6 +62,23 @@ public class SettingsActivity extends AppCompatActivity {
 
         Button saveButton = (Button)findViewById(R.id.saveButton);
         assert saveButton != null;
+
+        listOfCountries = (List<String>)Deserialize(listOfCountriesPath);
+        listOfCities = (List<String>)Deserialize(listOfCitiesPath);
+
+        if(listOfCountries!=null && listOfCities != null)
+        {
+            ArrayAdapter<String> countryAdapter = new ArrayAdapter<>(this,R.layout.textviewres_layout,R.id.resourceTextView,listOfCountries);
+            countryValue.setAdapter(countryAdapter);
+
+            ArrayAdapter<String> cityAdapter = new ArrayAdapter<>(this,R.layout.textviewres_layout,R.id.resourceTextView,listOfCities);
+            cityValue.setAdapter(cityAdapter);
+        }
+        else
+        {
+            listOfCities = new ArrayList<>();
+            listOfCountries = new ArrayList<>();
+        }
 
         saveButton.setOnClickListener(new View.OnClickListener()
         {
@@ -75,7 +105,21 @@ public class SettingsActivity extends AppCompatActivity {
 
                     ApplicationSettings.setSettings(settings);
 
-                    SerializeSettings();
+                    String settingsPath = getFilesDir().getAbsolutePath() + File.separator + "app_settings.bin";
+                    Serialize(ApplicationSettings.getSettings(),settingsPath);
+
+                    if(!listOfCountries.contains(country))
+                    {
+                        listOfCountries.add(country);
+                    }
+
+                    if(!listOfCities.contains(city))
+                    {
+                        listOfCities.add(city);
+                    }
+
+                    Serialize(listOfCountries,listOfCountriesPath);
+                    Serialize(listOfCities,listOfCitiesPath);
 
                     finish();
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
@@ -138,13 +182,12 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void SerializeSettings()
+    private void Serialize(Object object, String path)
     {
         try
         {
-            String path = getFilesDir().getAbsolutePath() + File.separator + "app_settings.bin";
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(path))); //Select where you wish to save the file...
-            oos.writeObject(ApplicationSettings.getSettings()); // write the class as an 'object'
+            oos.writeObject(object); // write the class as an 'object'
             oos.flush(); // flush the stream to insure all of the information was written to 'save.bin'
             oos.close();// close the stream
         }
@@ -152,6 +195,33 @@ public class SettingsActivity extends AppCompatActivity {
         {
             ex.printStackTrace();
         }
+    }
+
+    private Object Deserialize(String path)
+    {
+        try
+        {
+            return loadClassFile(new File(path));
+        }
+        catch (Exception ex)
+        {
+            return null;
+        }
+    }
+
+    public Object loadClassFile(File f)
+    {
+        try
+        {
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
+            Object o = ois.readObject();
+            return o;
+        }
+        catch(Exception ex)
+        {
+            ex.printStackTrace();
+        }
+        return null;
     }
 
     public void onRadioButtonClicked(View view)

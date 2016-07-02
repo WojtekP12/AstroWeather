@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity
         try
         {
             String path = getFilesDir().getAbsolutePath() + File.separator + "app_settings.bin";
-            ApplicationSettings.setSettings((Settings) loadClassFile(new File(path)));
+            ApplicationSettings.setSettings((Settings)loadClassFile(new File(path)));
         }
         catch (Exception ex)
         {
@@ -138,7 +138,7 @@ public class MainActivity extends ActionBarActivity
                             @Override
                             public void run()
                             {
-                                int hours = c.get(Calendar.HOUR);
+                                int hours = c.get(Calendar.HOUR_OF_DAY);
                                 int minutes = c.get(Calendar.MINUTE);
                                 int seconds = c.get(Calendar.SECOND);
                                 CurrentTime.setHour(hours);

@@ -2,14 +2,19 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/Mooncontent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:background="@color/MoonBackGround">
 
     <TableLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+        android:shrinkColumns="*"  android:stretchColumns="*" android:background="@color/MoonBackGround">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/MoonBackGround_Dark"/>
 
         <TableRow
             android:layout_height="wrap_content"
@@ -22,7 +27,7 @@
                 android:text="Moon"
                 android:layout_span="3"
                 android:padding="18dip"
-                android:textColor="#000459"
+                android:textColor="@color/WhiteText"
                 android:textAlignment="center"
                 android:textStyle="bold" />
         </TableRow>
@@ -30,9 +35,9 @@
             android:layout_height="wrap_content"
             android:layout_width="fill_parent"
             android:gravity="center_horizontal">
-            <ImageView android:layout_height="50dp"
+            <ImageView android:layout_height="100dp"
                 android:layout_width="match_parent"
-                android:src="@mipmap/moon"
+                android:src="@drawable/moon_0"
                 android:id="@+id/moonImage" />
 
         </TableRow>
@@ -48,7 +53,7 @@
                 android:text="Moonrise / Moonset"
                 android:layout_span="3"
                 android:padding="18dip"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:textAlignment="textStart"
                 android:textStyle="bold" />
         </TableRow>
@@ -60,13 +65,13 @@
             <TextView
                 android:text="Moonrise :"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"
                 android:id="@+id/moonriseValue" />
         </TableRow>
@@ -78,13 +83,13 @@
             <TextView
                 android:text="Moonset :"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"
                 android:id="@+id/moonsetValue" />
         </TableRow>
@@ -101,7 +106,7 @@
                 android:text="Newmoon / Fullmoon"
                 android:layout_span="3"
                 android:padding="18dip"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:textAlignment="textStart"
                 android:textStyle="bold" />
         </TableRow>
@@ -113,13 +118,13 @@
             <TextView
                 android:text="Newmoon :"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"
                 android:id="@+id/newmoonValue" />
         </TableRow>
@@ -131,13 +136,13 @@
             <TextView
                 android:text="Fullmoon :"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"
                 android:id="@+id/fullmoonValue" />
         </TableRow>
@@ -154,7 +159,7 @@
                 android:text="Phase"
                 android:layout_span="3"
                 android:padding="18dip"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:textAlignment="textStart"
                 android:textStyle="bold" />
         </TableRow>
@@ -166,13 +171,13 @@
             <TextView
                 android:text="Days :"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"
                 android:id="@+id/moonPhaseValue" />
         </TableRow>
@@ -189,7 +194,7 @@
                 android:text="Illumination"
                 android:layout_span="3"
                 android:padding="18dip"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:textAlignment="textStart"
                 android:textStyle="bold" />
         </TableRow>
@@ -201,13 +206,13 @@
             <TextView
                 android:text="Value :"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
+                android:textColor="@color/WhiteText"
                 android:padding="18dip" android:gravity="center"
                 android:id="@+id/lunationValue" />
         </TableRow>
