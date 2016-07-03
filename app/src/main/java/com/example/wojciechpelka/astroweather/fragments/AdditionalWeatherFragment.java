@@ -84,6 +84,7 @@ public class AdditionalWeatherFragment extends Fragment implements WeatherServic
                 int resource = getResources().getIdentifier("drawable/weather"+lastAdditionalWeather.getLastCode(),null,getActivity().getPackageName());
                 Drawable weatherIconDrawable = getResources().getDrawable(resource,null);
                 weatherImage.setImageDrawable(weatherIconDrawable);
+
             }
 
             titleValue.setText(lastAdditionalWeather.getLastCity());

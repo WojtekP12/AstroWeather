@@ -58,7 +58,7 @@ public class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter
     @Override
     public float getPageWidth(int position) {
         float nbPages;
-        if (DeviceSettings.config.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+        if (DeviceSettings.config.orientation == Configuration.ORIENTATION_LANDSCAPE || DeviceSettings.config.isLayoutSizeAtLeast(Configuration.SCREENLAYOUT_SIZE_XLARGE)) {
             nbPages = 2;
         } else {
             nbPages = 1;

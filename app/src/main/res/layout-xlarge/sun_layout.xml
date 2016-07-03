@@ -1,15 +1,20 @@
 <!-- fragment_screen_slide_page.xml -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/content"
+    android:id="@+id/Suncontent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
+    android:layout_height="match_parent"
+    android:background="@color/SunBackGround">
     <TableLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:shrinkColumns="*"  android:stretchColumns="*" android:background="#ffffff">
+        android:shrinkColumns="*"  android:stretchColumns="*"
+        android:background="@color/SunBackGround">
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="12dp"
+            android:background="@color/SunBackGround_Dark"/>
 
         <TableRow
             android:layout_height="wrap_content"
@@ -21,20 +26,15 @@
                 android:textSize="48dp"
                 android:text="Sun"
                 android:layout_span="3"
-                android:padding="18dip"
-                android:textColor="#c9b805"
+                android:padding="30dip"
+                android:textColor="@color/BlackText"
                 android:textAlignment="center"
                 android:textStyle="bold" />
         </TableRow>
-        <TableRow
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:gravity="center_horizontal">
-            <ImageView android:layout_height="100dp"
-                android:layout_width="match_parent"
-                />
-
-        </TableRow>
+        <ImageView android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:src="@drawable/sun"
+            android:id="@+id/sunImage"/>
         <!-- SunRise -->
         <TableRow
             android:layout_height="wrap_content"
@@ -46,8 +46,8 @@
                 android:textSize="30dp"
                 android:text="Sunrise"
                 android:layout_span="3"
-                android:padding="18dip"
-                android:textColor="#000000"
+                android:padding="24dip"
+                android:textColor="@color/BlackText"
                 android:textAlignment="textStart"
                 android:textStyle="bold" />
         </TableRow>
@@ -59,17 +59,16 @@
             <TextView
                 android:text="Time :"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"
                 android:id="@+id/sunriseTimeValue" />
         </TableRow>
         <TableRow
@@ -80,17 +79,16 @@
             <TextView
                 android:text="Azimuth :"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"
                 android:id="@+id/sunriseAzimuthValue" />
         </TableRow>
 
@@ -105,8 +103,8 @@
                 android:textSize="30dp"
                 android:text="Sunset"
                 android:layout_span="3"
-                android:padding="18dip"
-                android:textColor="#000000"
+                android:padding="24dip"
+                android:textColor="@color/BlackText"
                 android:textAlignment="textStart"
                 android:textStyle="bold" />
         </TableRow>
@@ -118,17 +116,16 @@
             <TextView
                 android:text="Time :"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
-                android:textSize="24dp" />
+                android:textColor="@color/BlackText"
+                android:textSize="24dp"
+                android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
-                android:textAlignment="textStart"
                 android:textSize="24dp"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"
                 android:id="@+id/sunsetTimeValue" />
         </TableRow>
         <TableRow
@@ -139,17 +136,16 @@
             <TextView
                 android:text="Azimuth :"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"
                 android:id="@+id/sunsetAzimuthValue" />
         </TableRow>
 
@@ -164,8 +160,8 @@
                 android:textSize="30dp"
                 android:text="Dawn / Twilight"
                 android:layout_span="3"
-                android:padding="18dip"
-                android:textColor="#000000"
+                android:padding="24dip"
+                android:textColor="@color/BlackText"
                 android:textAlignment="textStart"
                 android:textStyle="bold" />
         </TableRow>
@@ -177,17 +173,16 @@
             <TextView
                 android:text="Dawn :"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="textStart"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"
                 android:id="@+id/sunDawnValue" />
         </TableRow>
         <TableRow
@@ -198,17 +193,16 @@
             <TextView
                 android:text="Twilight :"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
-                android:textSize="24dp" />
+                android:textSize="24dp"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"/>
 
             <TextView
                 android:text="value"
                 android:layout_weight="1"
-                android:textColor="#000000"
-                android:padding="18dip" android:gravity="center"
                 android:textSize="24dp"
-                android:textAlignment="viewStart"
+                android:textColor="@color/BlackText"
+                android:padding="18dip" android:gravity="center"
                 android:id="@+id/sunTwilightValue" />
         </TableRow>
 

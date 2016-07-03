@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wojciechpelka.astroweather.ApplicationSettings;
 import com.example.wojciechpelka.astroweather.CurrentTime;
@@ -40,6 +41,10 @@ public class MainActivity extends ActionBarActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ApplicationSettings.setIsConnectedToNetwerk(isNetworkAvailable());
+        if(!ApplicationSettings.getIsConnectedToNetwerk())
+        {
+            Toast.makeText(this,"No Internet Connection!",Toast.LENGTH_LONG).show();
+        }
         ApplicationSettings.path = getFilesDir().getAbsolutePath() + File.separator;
 
         try
@@ -198,7 +203,14 @@ public class MainActivity extends ActionBarActivity
                 Intent intent = new Intent(context, SettingsActivity.class);
                 finish();
                 startActivity(intent);
-
+                return true;
+            }
+            case R.id.action_refresh:
+            {
+                Intent intent = new Intent(context, MainActivity.class);
+                finish();
+                startActivity(intent);
+                return true;
             }
             default:
             {
