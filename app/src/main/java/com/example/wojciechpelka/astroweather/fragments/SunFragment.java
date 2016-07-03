@@ -1,4 +1,4 @@
-package com.example.wojciechpelka.astroweather;
+package com.example.wojciechpelka.astroweather.fragments;
 
 import android.annotation.TargetApi;
 import android.graphics.drawable.Drawable;
@@ -15,6 +15,11 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.astrocalculator.AstroCalculator;
+import com.example.wojciechpelka.astroweather.ApplicationSettings;
+import com.example.wojciechpelka.astroweather.CurrentTime;
+import com.example.wojciechpelka.astroweather.R;
+import com.example.wojciechpelka.astroweather.Sun;
+import com.example.wojciechpelka.astroweather.TimeFormatter;
 
 import java.sql.Time;
 
@@ -147,7 +152,7 @@ public class SunFragment extends Fragment
 
         if(currentHour>=12 && currentHour<sunSetHour)
         {
-            return R.drawable.moon_0;
+            return R.drawable.sun;
         }
         else if(currentHour>=sunRiseHour && currentHour<12)
         {

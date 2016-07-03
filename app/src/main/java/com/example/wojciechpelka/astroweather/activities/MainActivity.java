@@ -1,32 +1,31 @@
-package com.example.wojciechpelka.astroweather;
+package com.example.wojciechpelka.astroweather.activities;
 
-import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.astrocalculator.AstroCalculator;
-import com.astrocalculator.AstroDateTime;
+import com.example.wojciechpelka.astroweather.ApplicationSettings;
+import com.example.wojciechpelka.astroweather.CurrentTime;
+import com.example.wojciechpelka.astroweather.DeviceSettings;
+import com.example.wojciechpelka.astroweather.R;
+import com.example.wojciechpelka.astroweather.ScreenSlidePagerAdapter;
+import com.example.wojciechpelka.astroweather.Settings;
+import com.example.wojciechpelka.astroweather.TimeFormatter;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class MainActivity extends ActionBarActivity
 {
@@ -40,6 +39,8 @@ public class MainActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ApplicationSettings.setIsConnectedToNetwerk(isNetworkAvailable());
+        ApplicationSettings.path = getFilesDir().getAbsolutePath() + File.separator;
 
         try
         {
@@ -215,6 +216,13 @@ public class MainActivity extends ActionBarActivity
         }
 
         return super.onKeyDown(keycode, e);
+    }
+
+    private boolean isNetworkAvailable()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 }

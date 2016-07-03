@@ -88,14 +88,14 @@
         android:layout_height="1dp"
         android:background="@android:color/black"/>
     <TableRow android:orientation="horizontal">
-        <fragment android:name="com.example.wojciechpelka.astroweather.MoonFragment"
+        <fragment android:name="com.example.wojciechpelka.astroweather.fragments.MoonFragment"
             android:id="@+id/moonFragment"
             android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             tools:layout="@layout/moon_layout" />
 
-        <fragment android:name="com.example.wojciechpelka.astroweather.SunFragment"
+        <fragment android:name="com.example.wojciechpelka.astroweather.fragments.SunFragment"
             android:id="@+id/sunFragment"
             android:layout_weight="1"
             android:layout_width="0dp"

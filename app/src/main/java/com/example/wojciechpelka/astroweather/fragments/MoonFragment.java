@@ -1,4 +1,4 @@
-package com.example.wojciechpelka.astroweather;
+package com.example.wojciechpelka.astroweather.fragments;
 
 import android.annotation.TargetApi;
 import android.content.res.Configuration;
@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.*;
 import com.astrocalculator.AstroCalculator;
 import com.astrocalculator.AstroDateTime;
+import com.example.wojciechpelka.astroweather.*;
+import com.example.wojciechpelka.astroweather.R;
 
 import java.util.Calendar;
 
@@ -36,7 +38,7 @@ public class MoonFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         final ViewGroup rootView;
-        rootView = (ViewGroup)inflater.inflate(R.layout.moon_layout,container,false);
+        rootView = (ViewGroup)inflater.inflate(com.example.wojciechpelka.astroweather.R.layout.moon_layout,container,false);
         setFragmentControls(rootView);
         if(ApplicationSettings.getSettings()!=null)
         {

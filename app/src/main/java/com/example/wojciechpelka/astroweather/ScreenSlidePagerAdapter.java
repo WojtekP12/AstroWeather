@@ -4,7 +4,12 @@ import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.PagerAdapter;
+
+import com.example.wojciechpelka.astroweather.fragments.AdditionalWeatherFragment;
+import com.example.wojciechpelka.astroweather.fragments.BasicWeatherFragment;
+import com.example.wojciechpelka.astroweather.fragments.ForecastFragment;
+import com.example.wojciechpelka.astroweather.fragments.MoonFragment;
+import com.example.wojciechpelka.astroweather.fragments.SunFragment;
 
 /**
  * Created by wojciech.pelka on 2016-05-23.

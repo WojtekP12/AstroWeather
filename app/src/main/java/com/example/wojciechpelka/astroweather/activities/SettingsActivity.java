@@ -1,10 +1,6 @@
-package com.example.wojciechpelka.astroweather;
+package com.example.wojciechpelka.astroweather.activities;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringDef;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -14,6 +10,11 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+import com.example.wojciechpelka.astroweather.ApplicationSettings;
+import com.example.wojciechpelka.astroweather.CurrentLocalization;
+import com.example.wojciechpelka.astroweather.R;
+import com.example.wojciechpelka.astroweather.Settings;
 
 import java.io.File;
 import java.io.FileInputStream;
