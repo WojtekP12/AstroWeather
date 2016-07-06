@@ -123,6 +123,8 @@ public class BasicWeatherFragment extends Fragment implements WeatherServiceCall
     @Override
     public void serviceFailure(Exception ex)
     {
-
+        if(isAdded()) {
+            Toast.makeText(getContext(), "0 RESULTS!", Toast.LENGTH_LONG).show();
+        }
     }
 }

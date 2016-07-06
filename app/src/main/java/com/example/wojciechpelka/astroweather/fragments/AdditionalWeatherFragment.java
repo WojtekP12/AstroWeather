@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.wojciechpelka.astroweather.serialization.Serializer;
 import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
@@ -124,6 +125,8 @@ public class AdditionalWeatherFragment extends Fragment implements WeatherServic
     @Override
     public void serviceFailure(Exception ex)
     {
-        //Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_LONG);
+        if(isAdded()) {
+            Toast.makeText(getContext(), "0 RESULTS!", Toast.LENGTH_LONG).show();
+        }
     }
 }

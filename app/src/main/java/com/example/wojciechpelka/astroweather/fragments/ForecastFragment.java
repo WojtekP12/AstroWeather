@@ -311,6 +311,7 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
     public void serviceSuccess(Chanel chanel)
     {
         Item item = chanel.getItem();
+
         list = item.getDayList();
         titleValue.setText(chanel.getLocation().getCity());
 
@@ -326,7 +327,9 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
     @Override
     public void serviceFailure(Exception ex)
     {
-
+        if(isAdded()) {
+            Toast.makeText(getContext(), "0 RESULTS!", Toast.LENGTH_LONG).show();
+        }
     }
 
 
