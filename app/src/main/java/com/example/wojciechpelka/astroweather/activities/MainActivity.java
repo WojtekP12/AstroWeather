@@ -125,7 +125,7 @@ public class MainActivity extends ActionBarActivity
         if(pager!=null)
         {
             pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-            pager .setAdapter(pagerAdapter);
+            pager.setAdapter(pagerAdapter);
         }
     }
 
@@ -230,10 +230,11 @@ public class MainActivity extends ActionBarActivity
             }
             case R.id.action_refresh:
             {
-                Intent intent = new Intent(context, MainActivity.class);
-                finish();
-                startActivity(intent);
-                return true;
+//                Intent intent = new Intent(context, MainActivity.class);
+//                finish();
+//                startActivity(intent);
+
+                return false;
             }
             default:
             {

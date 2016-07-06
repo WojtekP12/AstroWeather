@@ -1,12 +1,18 @@
 package com.example.wojciechpelka.astroweather.fragments;
 
 import android.annotation.TargetApi;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -75,16 +81,24 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
     LastForecast lastForecast;
 
     List<ForecastDay> list;
+    ViewGroup rootView;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        final ViewGroup rootView;
+        //final ViewGroup rootView;
         rootView = (ViewGroup)inflater.inflate(R.layout.foreacast_layout,container,false);
-
+        setHasOptionsMenu(true);
         InitForecastDaysControls(rootView);
 
+        setUpWeather();
+
+
+        return rootView;
+    }
+
+    private void setUpWeather() {
         titleValue = (TextView)rootView.findViewById(R.id.titleValue);
 
 
@@ -98,8 +112,6 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
             SetLastWeather();
             titleValue.setText(lastForecast.getLastCity());
         }
-
-        return rootView;
     }
 
 
@@ -330,6 +342,51 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
         if(isAdded()) {
             Toast.makeText(getContext(), "0 RESULTS!", Toast.LENGTH_LONG).show();
         }
+    }
+
+    @Override
+    public void  onCreateOptionsMenu(Menu menu, MenuInflater inflater)
+    {
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.action_refresh:
+                rootView.invalidate();
+                ApplicationSettings.setIsConnectedToNetwerk(isNetworkAvailable());
+
+                setUpWeather();
+
+                if(isAdded())
+                {
+                    Toast.makeText(getContext(), "refreshed", Toast.LENGTH_SHORT).show();
+                    if(ApplicationSettings.getIsConnectedToNetwerk())
+                    {
+
+                        Toast.makeText(getContext(), "data has been downloaded from YAHOO", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(getContext(),"No Internet Connection!",Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                return false;
+            default:
+                break;
+        }
+
+        return false;
+    }
+
+    private boolean isNetworkAvailable()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
 
