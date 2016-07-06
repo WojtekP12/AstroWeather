@@ -10,6 +10,7 @@ import com.example.wojciechpelka.astroweather.fragments.BasicWeatherFragment;
 import com.example.wojciechpelka.astroweather.fragments.ForecastFragment;
 import com.example.wojciechpelka.astroweather.fragments.MoonFragment;
 import com.example.wojciechpelka.astroweather.fragments.SunFragment;
+import com.example.wojciechpelka.astroweather.settings.DeviceSettings;
 
 /**
  * Created by wojciech.pelka on 2016-05-23.

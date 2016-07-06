@@ -11,10 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 
-import com.example.wojciechpelka.astroweather.ApplicationSettings;
+import com.example.wojciechpelka.astroweather.serialization.Serializer;
+import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
 import com.example.wojciechpelka.astroweather.CurrentLocalization;
 import com.example.wojciechpelka.astroweather.R;
-import com.example.wojciechpelka.astroweather.Settings;
+import com.example.wojciechpelka.astroweather.settings.Settings;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -64,8 +65,8 @@ public class SettingsActivity extends AppCompatActivity {
         Button saveButton = (Button)findViewById(R.id.saveButton);
         assert saveButton != null;
 
-        listOfCountries = (List<String>)Deserialize(listOfCountriesPath);
-        listOfCities = (List<String>)Deserialize(listOfCitiesPath);
+        listOfCountries = (List<String>) Serializer.Deserialize(listOfCountriesPath);
+        listOfCities = (List<String>)Serializer.Deserialize(listOfCitiesPath);
 
         if(listOfCountries!=null && listOfCities != null)
         {
@@ -107,7 +108,7 @@ public class SettingsActivity extends AppCompatActivity {
                     ApplicationSettings.setSettings(settings);
 
                     String settingsPath = getFilesDir().getAbsolutePath() + File.separator + "app_settings.bin";
-                    Serialize(ApplicationSettings.getSettings(),settingsPath);
+                    Serializer.Serialize(ApplicationSettings.getSettings(),settingsPath);
 
                     if(!listOfCountries.contains(country))
                     {
@@ -119,8 +120,8 @@ public class SettingsActivity extends AppCompatActivity {
                         listOfCities.add(city);
                     }
 
-                    Serialize(listOfCountries,listOfCountriesPath);
-                    Serialize(listOfCities,listOfCitiesPath);
+                    Serializer.Serialize(listOfCountries,listOfCountriesPath);
+                    Serializer.Serialize(listOfCities,listOfCitiesPath);
 
                     finish();
                     Intent intent = new Intent(v.getContext(), MainActivity.class);
@@ -181,48 +182,6 @@ public class SettingsActivity extends AppCompatActivity {
             fValue.setChecked(false);
             cValue.setChecked(true);
         }
-    }
-
-    private void Serialize(Object object, String path)
-    {
-        try
-        {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(path))); //Select where you wish to save the file...
-            oos.writeObject(object); // write the class as an 'object'
-            oos.flush(); // flush the stream to insure all of the information was written to 'save.bin'
-            oos.close();// close the stream
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }
-
-    private Object Deserialize(String path)
-    {
-        try
-        {
-            return loadClassFile(new File(path));
-        }
-        catch (Exception ex)
-        {
-            return null;
-        }
-    }
-
-    public Object loadClassFile(File f)
-    {
-        try
-        {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-            Object o = ois.readObject();
-            return o;
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        return null;
     }
 
     public void onRadioButtonClicked(View view)

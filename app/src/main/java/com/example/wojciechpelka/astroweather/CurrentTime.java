@@ -1,5 +1,7 @@
 package com.example.wojciechpelka.astroweather;
 
+import com.example.wojciechpelka.astroweather.converters.TimeFormatter;
+
 import java.util.Calendar;
 
 /**

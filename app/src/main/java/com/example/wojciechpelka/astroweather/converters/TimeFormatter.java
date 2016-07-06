@@ -1,4 +1,4 @@
-package com.example.wojciechpelka.astroweather;
+package com.example.wojciechpelka.astroweather.converters;
 
 /**
  * Created by Wojciech on 2016-06-25.

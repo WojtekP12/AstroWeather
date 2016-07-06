@@ -1,4 +1,6 @@
-package com.example.wojciechpelka.astroweather;
+package com.example.wojciechpelka.astroweather.converters;
+
+import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
 
 /**
  * Created by Wojciech on 2016-07-02.

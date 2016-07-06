@@ -13,12 +13,19 @@ import java.util.List;
 public class LastForecast implements Serializable
 {
     private List<ForecastDay> lastForecastDays = new ArrayList<>();
+    private String lastCity;
+
+    public String getLastCity() {
+
+        return lastCity;
+    }
 
     public List<ForecastDay> getLastForecastDays() {
         return lastForecastDays;
     }
 
-    public LastForecast(List<ForecastDay> lastForecastDays) {
+    public LastForecast(List<ForecastDay> lastForecastDays, String lastCity) {
         this.lastForecastDays = lastForecastDays;
+        this.lastCity = lastCity;
     }
 }

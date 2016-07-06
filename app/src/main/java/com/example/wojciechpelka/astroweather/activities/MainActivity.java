@@ -15,13 +15,13 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.wojciechpelka.astroweather.ApplicationSettings;
+import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
 import com.example.wojciechpelka.astroweather.CurrentTime;
-import com.example.wojciechpelka.astroweather.DeviceSettings;
+import com.example.wojciechpelka.astroweather.settings.DeviceSettings;
 import com.example.wojciechpelka.astroweather.R;
 import com.example.wojciechpelka.astroweather.ScreenSlidePagerAdapter;
-import com.example.wojciechpelka.astroweather.Settings;
-import com.example.wojciechpelka.astroweather.TimeFormatter;
+import com.example.wojciechpelka.astroweather.settings.Settings;
+import com.example.wojciechpelka.astroweather.converters.TimeFormatter;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,13 +40,52 @@ public class MainActivity extends ActionBarActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Settings();
+        Time();
+        CurrentLocation();
+
+        initMainViewPager();
+
+        setMainViewPager();
+    }
+
+    private void Time() {
+        CurrentTime.SetCurrentDate();
+        initCurrentTimeControls();
+        SetApplicationClock();
+    }
+
+    private void CurrentLocation() {
+        initCurrentLocationControls();
+
+        setCurrentLocationControls();
+    }
+
+    private void Settings() {
+        SetApplicationSettings();
+        IfInternetIsNotAvailable();
+        LoadApplicationSettings();
+        SetDeviceSettings();
+    }
+
+    private void SetApplicationSettings() {
         ApplicationSettings.setIsConnectedToNetwerk(isNetworkAvailable());
+        ApplicationSettings.path = getFilesDir().getAbsolutePath() + File.separator;
+    }
+
+    private void SetDeviceSettings() {
+        DeviceSettings.config = getResources().getConfiguration();
+    }
+
+    private void IfInternetIsNotAvailable() {
         if(!ApplicationSettings.getIsConnectedToNetwerk())
         {
             Toast.makeText(this,"No Internet Connection!",Toast.LENGTH_LONG).show();
         }
-        ApplicationSettings.path = getFilesDir().getAbsolutePath() + File.separator;
+    }
 
+    private void LoadApplicationSettings() {
         try
         {
             String path = getFilesDir().getAbsolutePath() + File.separator + "app_settings.bin";
@@ -65,22 +104,6 @@ public class MainActivity extends ActionBarActivity
             finish();
             startActivity(intent);
         }
-
-        DeviceSettings.config = getResources().getConfiguration();
-
-        CurrentTime.SetCurrentDate();
-
-        initCurrentTimeControls();
-
-        SetApplicationClock();
-
-        initCurrentLocationControls();
-
-        setCurrentLocationControls();
-
-        initMainViewPager();
-
-        setMainViewPager();
     }
 
     public Object loadClassFile(File f)

@@ -11,13 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.wojciechpelka.astroweather.ApplicationSettings;
+import com.example.wojciechpelka.astroweather.serialization.Serializer;
+import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
 import com.example.wojciechpelka.astroweather.LastAdditionalWeather;
-import com.example.wojciechpelka.astroweather.LastBasicWeather;
 import com.example.wojciechpelka.astroweather.R;
-import com.example.wojciechpelka.astroweather.UnitsConverter;
+import com.example.wojciechpelka.astroweather.converters.UnitsConverter;
 import com.example.wojciechpelka.astroweather.data.Chanel;
 import com.example.wojciechpelka.astroweather.data.Item;
 import com.example.wojciechpelka.astroweather.service.WeatherServiceCallback;
@@ -71,7 +70,7 @@ public class AdditionalWeatherFragment extends Fragment implements WeatherServic
         }
         else
         {
-            lastAdditionalWeather = (LastAdditionalWeather) Deserialize(lastAditionalWeatherPath);
+            lastAdditionalWeather = (LastAdditionalWeather) Serializer.Deserialize(lastAditionalWeatherPath);
 
             if(lastAdditionalWeather==null)
             {
@@ -119,54 +118,12 @@ public class AdditionalWeatherFragment extends Fragment implements WeatherServic
         titleValue.setText(chanel.getLocation().getCity());
 
         LastAdditionalWeather lastAdditionalWeather = new LastAdditionalWeather(titleValue.getText().toString(),item.getCondition().getCode(),windDirectionValue.getText().toString(),windSpeedValue.getText().toString(),humidityValue.getText().toString(),visibilityValue.getText().toString());
-        Serialize(lastAdditionalWeather,lastAditionalWeatherPath);
+        Serializer.Serialize(lastAdditionalWeather,lastAditionalWeatherPath);
     }
 
     @Override
     public void serviceFailure(Exception ex)
     {
         //Toast.makeText(getActivity(),ex.getMessage(),Toast.LENGTH_LONG);
-    }
-
-    private void Serialize(Object object, String path)
-    {
-        try
-        {
-            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(new File(path))); //Select where you wish to save the file...
-            oos.writeObject(object); // write the class as an 'object'
-            oos.flush(); // flush the stream to insure all of the information was written to 'save.bin'
-            oos.close();// close the stream
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-    }
-
-    private Object Deserialize(String path)
-    {
-        try
-        {
-            return loadClassFile(new File(path));
-        }
-        catch (Exception ex)
-        {
-            return null;
-        }
-    }
-
-    public Object loadClassFile(File f)
-    {
-        try
-        {
-            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f));
-            Object o = ois.readObject();
-            return o;
-        }
-        catch(Exception ex)
-        {
-            ex.printStackTrace();
-        }
-        return null;
     }
 }

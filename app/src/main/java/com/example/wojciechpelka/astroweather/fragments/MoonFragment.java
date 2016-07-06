@@ -1,8 +1,6 @@
 package com.example.wojciechpelka.astroweather.fragments;
 
 import android.annotation.TargetApi;
-import android.content.res.Configuration;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,13 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.*;
+
 import com.astrocalculator.AstroCalculator;
-import com.astrocalculator.AstroDateTime;
 import com.example.wojciechpelka.astroweather.*;
 import com.example.wojciechpelka.astroweather.R;
-
-import java.util.Calendar;
+import com.example.wojciechpelka.astroweather.converters.TimeFormatter;
+import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
 
 /**
  * Created by wojciech.pelka on 2016-05-23.

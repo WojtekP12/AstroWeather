@@ -1,4 +1,4 @@
-package com.example.wojciechpelka.astroweather;
+package com.example.wojciechpelka.astroweather.settings;
 
 import java.io.Serializable;
 
