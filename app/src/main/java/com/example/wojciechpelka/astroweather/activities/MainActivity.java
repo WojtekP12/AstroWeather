@@ -15,6 +15,12 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.wojciechpelka.astroweather.data.Channel;
+import com.example.wojciechpelka.astroweather.data.WeatherData;
+import com.example.wojciechpelka.astroweather.serialization.Paths;
+import com.example.wojciechpelka.astroweather.serialization.Serializer;
+import com.example.wojciechpelka.astroweather.service.WeatherServiceCallback;
+import com.example.wojciechpelka.astroweather.service.YahooWeatherService;
 import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
 import com.example.wojciechpelka.astroweather.CurrentTime;
 import com.example.wojciechpelka.astroweather.settings.DeviceSettings;
@@ -28,13 +34,15 @@ import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.Calendar;
 
-public class MainActivity extends ActionBarActivity
+public class MainActivity extends ActionBarActivity implements WeatherServiceCallback
 {
     private ViewPager pager;
     private PagerAdapter pagerAdapter;
 
     TextView Hours,Minutes,Seconds;
     TextView Lat, Lng;
+    private YahooWeatherService service;
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -45,9 +53,26 @@ public class MainActivity extends ActionBarActivity
         Time();
         CurrentLocation();
 
+
+        getWeatherData();
+
+
         initMainViewPager();
 
         setMainViewPager();
+    }
+
+    private void getWeatherData() {
+        if(ApplicationSettings.getIsConnectedToNetwerk())
+        {
+            service = new YahooWeatherService(this);
+            service.refreashWeather(ApplicationSettings.getSettings().getCity()+", "+ApplicationSettings.getSettings().getCountry());
+        }
+        else
+        {
+
+            WeatherData.channel = (Channel) Serializer.Deserialize(Paths.LAST_CHANNEL_PATH);
+        }
     }
 
     private void Time() {
@@ -230,11 +255,19 @@ public class MainActivity extends ActionBarActivity
             }
             case R.id.action_refresh:
             {
-//                Intent intent = new Intent(context, MainActivity.class);
-//                finish();
-//                startActivity(intent);
+                ApplicationSettings.setIsConnectedToNetwerk(isNetworkAvailable());
+                getWeatherData();
 
-                return false;
+                Toast.makeText(this,"Refreashed",Toast.LENGTH_SHORT).show();
+                if(ApplicationSettings.getIsConnectedToNetwerk())
+                {
+                    Toast.makeText(this,"Weather data has been downloaded from YAHOO",Toast.LENGTH_LONG).show();
+                }
+                else
+                {
+                    Toast.makeText(this,"No internet connection",Toast.LENGTH_LONG).show();
+                }
+                return true;
             }
             default:
             {
@@ -261,4 +294,17 @@ public class MainActivity extends ActionBarActivity
         return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 
+    @Override
+    public void serviceSuccess(Channel channel)
+    {
+        WeatherData.channel = channel;
+        Serializer.Serialize(channel, Paths.LAST_CHANNEL_PATH);
+        WeatherData.channel = (Channel)Serializer.Deserialize(Paths.LAST_CHANNEL_PATH);
+    }
+
+    @Override
+    public void serviceFailure(Exception ex)
+    {
+
+    }
 }

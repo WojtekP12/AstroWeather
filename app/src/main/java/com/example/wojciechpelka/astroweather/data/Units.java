@@ -4,10 +4,12 @@ import com.example.wojciechpelka.astroweather.service.YahooWeatherService;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Wojciech on 2016-06-26.
  */
-public class Units implements JSONPopulator {
+public class Units implements JSONPopulator, Serializable {
 
     private String temperature;
     private String pressure;

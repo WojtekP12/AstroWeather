@@ -2,10 +2,12 @@ package com.example.wojciechpelka.astroweather.data;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Wojciech on 2016-06-26.
  */
-public class Wind implements JSONPopulator
+public class Wind implements JSONPopulator, Serializable
 {
     private String windSpeed;
     private String windDirecetion;

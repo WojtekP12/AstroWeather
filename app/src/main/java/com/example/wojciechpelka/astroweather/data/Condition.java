@@ -3,11 +3,13 @@ package com.example.wojciechpelka.astroweather.data;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Wojciech on 2016-06-26.
  */
 
-public class Condition implements JSONPopulator
+public class Condition implements JSONPopulator, Serializable
 {
     private int code;
     private int temperature;

@@ -4,21 +4,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Wojciech on 2016-06-26.
  */
-public class Item implements JSONPopulator
+public class Item implements JSONPopulator, Serializable
 {
     private Condition condition;
     private String lat;
     private String lng;
 
     private List<ForecastDay> dayList = new ArrayList<ForecastDay>();
-
-    private JSONArray forecast;
 
     public String getLat() {
         return lat;
@@ -42,6 +41,7 @@ public class Item implements JSONPopulator
         condition.populate(data.optJSONObject("condition"));
         lat = data.optString("lat");
         lng = data.optString("long");
+        JSONArray forecast;
         forecast = data.optJSONArray("forecast");
         generateForecastDayList(forecast);
     }

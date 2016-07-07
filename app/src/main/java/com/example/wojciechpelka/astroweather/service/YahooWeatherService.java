@@ -1,18 +1,15 @@
 package com.example.wojciechpelka.astroweather.service;
 
-import android.net.Uri;
 import android.os.AsyncTask;
 
-import com.example.wojciechpelka.astroweather.data.Chanel;
+import com.example.wojciechpelka.astroweather.data.Channel;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -97,7 +94,7 @@ public class YahooWeatherService
                         return;
                     }
 
-                    Chanel channel = new Chanel();
+                    Channel channel = new Channel();
                     channel.populate(queryResults.optJSONObject("results").optJSONObject("channel"));
 
                     callback.serviceSuccess(channel);

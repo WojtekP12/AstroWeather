@@ -5,10 +5,12 @@ import com.astrocalculator.AstroCalculator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Wojciech on 2016-06-26.
  */
-public class Chanel implements JSONPopulator
+public class Channel implements JSONPopulator, Serializable
 {
     private Units units;
     private Item item;

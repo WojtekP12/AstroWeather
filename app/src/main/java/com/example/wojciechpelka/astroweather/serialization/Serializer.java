@@ -31,6 +31,7 @@ public class Serializer
         }
         catch (Exception ex)
         {
+            ex.printStackTrace();
             return null;
         }
     }

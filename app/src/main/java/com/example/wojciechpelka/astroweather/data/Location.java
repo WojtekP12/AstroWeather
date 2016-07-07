@@ -2,10 +2,12 @@ package com.example.wojciechpelka.astroweather.data;
 
 import org.json.JSONObject;
 
+import java.io.Serializable;
+
 /**
  * Created by Wojciech on 2016-06-26.
  */
-public class Location implements JSONPopulator {
+public class Location implements JSONPopulator, Serializable {
 
     private String city;
 

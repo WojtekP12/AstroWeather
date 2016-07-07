@@ -1,51 +1,32 @@
 package com.example.wojciechpelka.astroweather.fragments;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.wojciechpelka.astroweather.LastBasicWeather;
-import com.example.wojciechpelka.astroweather.serialization.Serializer;
-import com.example.wojciechpelka.astroweather.settings.ApplicationSettings;
-import com.example.wojciechpelka.astroweather.LastForecast;
+import com.example.wojciechpelka.astroweather.data.WeatherData;
 import com.example.wojciechpelka.astroweather.R;
 import com.example.wojciechpelka.astroweather.converters.UnitsConverter;
-import com.example.wojciechpelka.astroweather.data.Chanel;
+import com.example.wojciechpelka.astroweather.data.Channel;
 import com.example.wojciechpelka.astroweather.data.ForecastDay;
 import com.example.wojciechpelka.astroweather.data.Item;
-import com.example.wojciechpelka.astroweather.service.WeatherServiceCallback;
-import com.example.wojciechpelka.astroweather.service.YahooWeatherService;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Wojciech on 2016-06-25.
  */
 
-public class ForecastFragment  extends Fragment implements WeatherServiceCallback
+public class ForecastFragment  extends Fragment
 {
-    private YahooWeatherService service;
+    //private YahooWeatherService service;
 
     ImageView day1WeatherImage;
     TextView day1DayValue;
@@ -77,9 +58,6 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
 
     TextView titleValue;
 
-    String lastForecastPath = "/data/user/0/com.example.wojciechpelka.astroweather/files/" + "lastForecast.bin";
-    LastForecast lastForecast;
-
     List<ForecastDay> list;
     ViewGroup rootView;
 
@@ -87,33 +65,12 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        //final ViewGroup rootView;
         rootView = (ViewGroup)inflater.inflate(R.layout.foreacast_layout,container,false);
         setHasOptionsMenu(true);
         InitForecastDaysControls(rootView);
-
-        setUpWeather();
-
-
+        fillControls(WeatherData.channel);
         return rootView;
     }
-
-    private void setUpWeather() {
-        titleValue = (TextView)rootView.findViewById(R.id.titleValue);
-
-
-        if(ApplicationSettings.getIsConnectedToNetwerk())
-        {
-            service = new YahooWeatherService(this);
-            service.refreashWeather(ApplicationSettings.getSettings().getCity()+", "+ApplicationSettings.getSettings().getCountry());
-        }
-        else
-        {
-            SetLastWeather();
-            titleValue.setText(lastForecast.getLastCity());
-        }
-    }
-
 
     //GENERAL METHODS
     private void setDay7Weather(String dayName, String dayTemperature) {
@@ -150,8 +107,6 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
         Drawable drawable = getResources().getDrawable(day1Resource,null);
         return drawable;
     }
-
-
 
     //INIT
     private void InitForecastDaysControls(ViewGroup rootView) {
@@ -205,61 +160,6 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
         day1TemperatureValue = (TextView)rootView.findViewById(R.id.day1TemperatureValue);
     }
 
-
-
-    //LAST WEATHER
-    private void SetLastWeather() {
-        getLastForecast();
-        setWeekLastWeatherImages();
-        setWeekLastWeather();
-
-    }
-    private void setWeekLastWeather() {
-        setDay1Weather(getDayName_LastForecast(1), getDayTemperature_LastForecast(1));
-        setDay2Weather(getDayName_LastForecast(2), getDayTemperature_LastForecast(2));
-        setDay3Weather(getDayName_LastForecast(3), getDayTemperature_LastForecast(3));
-        setDay4Weather(getDayName_LastForecast(4), getDayTemperature_LastForecast(4));
-        setDay5Weather(getDayName_LastForecast(5), getDayTemperature_LastForecast(5));
-        setDay6Weather(getDayName_LastForecast(6), getDayTemperature_LastForecast(6));
-        setDay7Weather(getDayName_LastForecast(7), getDayTemperature_LastForecast(7));
-    }
-    private String getDayName_LastForecast(int day) {
-        return String.valueOf(lastForecast.getLastForecastDays().get(day-1).getDay());
-    }
-    private String getDayTemperature_LastForecast(int day) {
-        return UnitsConverter.temperature(String.valueOf(lastForecast.getLastForecastDays().get(day-1).getLow()))+" - "+UnitsConverter.temperature(String.valueOf(lastForecast.getLastForecastDays().get(day-1).getHigh()));
-    }
-    private void setWeekLastWeatherImages() {
-        if(isAdded())
-        {
-            day1WeatherImage.setImageDrawable(getWeatherDrawable(getLastWeatherCodeforDay(1)));
-            day2WeatherImage.setImageDrawable(getWeatherDrawable(getLastWeatherCodeforDay(2)));
-            day3WeatherImage.setImageDrawable(getWeatherDrawable(getLastWeatherCodeforDay(3)));
-            day4WeatherImage.setImageDrawable(getWeatherDrawable(getLastWeatherCodeforDay(4)));
-            day5WeatherImage.setImageDrawable(getWeatherDrawable(getLastWeatherCodeforDay(5)));
-            day6WeatherImage.setImageDrawable(getWeatherDrawable(getLastWeatherCodeforDay(6)));
-            day7WeatherImage.setImageDrawable(getWeatherDrawable(getLastWeatherCodeforDay(7)));
-        }
-    }
-    private int getLastWeatherCodeforDay(int day) {
-        return lastForecast.getLastForecastDays().get(day-1).getCode();
-    }
-    private void getLastForecast() {
-        lastForecast = (LastForecast)Serializer.Deserialize(lastForecastPath);
-        if(lastForecast==null)
-        {
-            ForecastDay day = new ForecastDay(44,"Loading...","Loading...","0","0","Loading...");
-            List<ForecastDay> lastForecastDays = new ArrayList<>();
-            for(int i=0;i<7;i++)
-            {
-                lastForecastDays.add(day);
-            }
-            lastForecast = new LastForecast(lastForecastDays,"Loading...");
-        }
-    }
-
-
-
     //ACTUAL WEATHER
     private void setWeekWeatherImages() {
         day1WeatherImage.setImageDrawable(getWeatherDrawable(getWeatherCodeforDay(1)));
@@ -294,100 +194,26 @@ public class ForecastFragment  extends Fragment implements WeatherServiceCallbac
         setWeekWeatherImages();
         setWeekWeather();
     }
-    @NonNull
-    private List<ForecastDay> fillSerializableForecastList() {
-        List<ForecastDay> lastForecastDays = new ArrayList<>();
 
-        ForecastDay day1 = new ForecastDay(list.get(0).getCode(),"",day1DayValue.getText().toString(),list.get(0).getHigh(),list.get(0).getLow(),"");
-        ForecastDay day2 = new ForecastDay(list.get(1).getCode(),"",day2DayValue.getText().toString(),list.get(1).getHigh(),list.get(1).getLow(),"");
-        ForecastDay day3 = new ForecastDay(list.get(2).getCode(),"",day3DayValue.getText().toString(),list.get(2).getHigh(),list.get(2).getLow(),"");
-        ForecastDay day4 = new ForecastDay(list.get(3).getCode(),"",day4DayValue.getText().toString(),list.get(3).getHigh(),list.get(3).getLow(),"");
-        ForecastDay day5 = new ForecastDay(list.get(4).getCode(),"",day5DayValue.getText().toString(),list.get(4).getHigh(),list.get(4).getLow(),"");
-        ForecastDay day6 = new ForecastDay(list.get(5).getCode(),"",day6DayValue.getText().toString(),list.get(5).getHigh(),list.get(5).getLow(),"");
-        ForecastDay day7 = new ForecastDay(list.get(6).getCode(),"",day7DayValue.getText().toString(),list.get(6).getHigh(),list.get(6).getLow(),"");
-
-        lastForecastDays.add(day1);
-        lastForecastDays.add(day2);
-        lastForecastDays.add(day3);
-        lastForecastDays.add(day4);
-        lastForecastDays.add(day5);
-        lastForecastDays.add(day6);
-        lastForecastDays.add(day7);
-        return lastForecastDays;
-    }
-
-
-
-
-    @Override
-    public void serviceSuccess(Chanel chanel)
+    public void fillControls(Channel channel)
     {
-        Item item = chanel.getItem();
-
-        list = item.getDayList();
-        titleValue.setText(chanel.getLocation().getCity());
-
-        SetForecast();
-
-        List<ForecastDay> lastForecastDays = fillSerializableForecastList();
-        lastForecast = new LastForecast(lastForecastDays,titleValue.getText().toString());
-
-        Serializer.Serialize(lastForecast,lastForecastPath);
-
-    }
-
-    @Override
-    public void serviceFailure(Exception ex)
-    {
-        if(isAdded()) {
-            Toast.makeText(getContext(), "0 RESULTS!", Toast.LENGTH_LONG).show();
-        }
-    }
-
-    @Override
-    public void  onCreateOptionsMenu(Menu menu, MenuInflater inflater)
-    {
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId())
+        if(channel == null)
         {
-            case R.id.action_refresh:
-                rootView.invalidate();
-                ApplicationSettings.setIsConnectedToNetwerk(isNetworkAvailable());
-
-                setUpWeather();
-
-                if(isAdded())
-                {
-                    Toast.makeText(getContext(), "refreshed", Toast.LENGTH_SHORT).show();
-                    if(ApplicationSettings.getIsConnectedToNetwerk())
-                    {
-
-                        Toast.makeText(getContext(), "data has been downloaded from YAHOO", Toast.LENGTH_LONG).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(getContext(),"No Internet Connection!",Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                return false;
-            default:
-                break;
+            return;
         }
 
-        return false;
+        Item item = channel.getItem();
+        list = item.getDayList();
+        titleValue = (TextView)rootView.findViewById(R.id.titleValue);
+        titleValue.setText(channel.getLocation().getCity());
+        SetForecast();
     }
 
-    private boolean isNetworkAvailable()
+    @Override
+    public void onResume()
     {
-        ConnectivityManager connectivityManager = (ConnectivityManager)getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
-        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+        rootView.invalidate();
+        fillControls(WeatherData.channel);
+        super.onResume();
     }
-
-
 }
